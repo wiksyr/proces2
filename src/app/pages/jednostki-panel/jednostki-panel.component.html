@@ -1,0 +1,198 @@
+<div class="panel" [ngClass]="{ pin: pinned, open: isOpened }">
+    <div class="data-wrapper">
+      <ng-container *ngIf="!isLoading">
+        <dx-toolbar class="panel-toolbar">
+          <dxi-item location="before">
+            <span class="contact-name value">{{ formData.name }}</span>
+          </dxi-item>
+          <dxi-item location="after" [visible]="isPinEnabled">
+            <dx-button
+              stylingMode="text"
+              [icon]="pinned ? 'pin' : 'unpin'"
+              (onClick)="onPinClick()"
+            ></dx-button>
+          </dxi-item>
+          <dxi-item location="after">
+            <dx-button
+              icon="close" 
+              stylingMode="text"
+              (onClick)="onClosePanel()"></dx-button>
+          </dxi-item>
+        </dx-toolbar>
+  
+        <dx-scroll-view class="panel-scroll">
+          <dx-validation-group>
+            <div class="data-part border">
+              <dx-form
+                class="plain-styled-form"
+                labelMode="floating"
+                [class.view-mode]="!isEditing"
+              >
+                <dxi-item itemType="group" [colCount]="2" cssClass="photo-row">
+                  <dxo-col-count-by-screen [xs]="2"></dxo-col-count-by-screen>
+                  <dxi-item cssClass="photo-box">
+                    <div *dxTemplate>
+                      <form-photo [link]="'https://th.bing.com/th/id/R.ea17070f3a1a5b00a5bd7bd392fe7007?rik=jOK6fYqAeiqJTw&pid=ImgRaw&r=0'"></form-photo>
+                    </div>
+                  </dxi-item>
+  
+                  <dxi-item itemType="group">
+  
+                    <dxi-item cssClass="accent">
+                      <div *dxTemplate>
+                        <form-textbox
+                          label="Produkt"
+                          [(value)]="formData.produktNazwa"
+                          [isEditing]="isEditing"
+                        ></form-textbox>
+                      </div>
+                    </dxi-item>
+
+                  </dxi-item>
+                </dxi-item>
+  
+                <dxi-item itemType="group" cssClass="contact-fields-group">
+                  <dxi-item>
+                    <div *dxTemplate>
+                      <form-textbox
+                        label="Jednostka ID:"
+                        [(value)]="formData.jednostkaId"
+                        [isEditing]="isEditing"
+                      >
+                      </form-textbox>
+                    </div>
+                  </dxi-item>
+                  <dxi-item>
+                    <div *dxTemplate>
+                      <form-textbox
+                        label="Poprzednia Jednostka ID:"
+                        [(value)]="formData.poprzedniaJednostkaId"
+                        [isEditing]="isEditing"
+                        [validators]="[]"
+                      ></form-textbox>
+                    </div>
+                  </dxi-item>
+                  <dxi-item>
+                    <div *dxTemplate>
+                      <form-textbox
+                        label="Nazwa Produktu:"
+                        [(value)]="formData.produktNazwa"
+                        [isEditing]="isEditing"
+                        [validators]="[]"
+                      >
+                      </form-textbox>
+                    </div>
+                  </dxi-item>
+                  <dxi-item>
+                    <div *dxTemplate>
+                      <form-textbox
+                        label="Strefa"
+                        [(value)]="formData.strefaNazwa"
+                        [isEditing]="isEditing"
+                        [validators]="[]"
+                      >
+                      </form-textbox>
+                    </div>
+                  </dxi-item>
+                </dxi-item>
+              </dx-form>
+            </div>
+  
+            <div class="data-part data-part-toolbar border">
+              <dx-toolbar>
+                <dxi-item location="after" [visible]="!isEditing">
+                  <dx-button
+                    text="Edytuj"
+                    icon="edit"
+                    stylingMode="contained"
+                    type="default"
+                    (onClick)="toggleEdit()"
+                  >
+                  </dx-button>
+                </dxi-item>
+                <dxi-item location="after" [visible]="!isEditing">
+                  <dx-button
+                    text="Szczegóły"
+                    stylingMode="outlined"
+                    type="normal"
+                    (onClick)="navigateToDetails()"
+                  >
+                  </dx-button>
+                </dxi-item>
+                <dxi-item
+                  location="after"
+                  locateInMenu="after"
+                  [visible]="isEditing"
+                >
+                  <dx-button
+                    text="Save"
+                    icon="Zapisz"
+                    stylingMode="contained"
+                    type="default"
+                    (onClick)="onSaveClick($event)"
+                  >
+                  </dx-button>
+                </dxi-item>
+                <dxi-item
+                  location="after"
+                  locateInMenu="after"
+                  [visible]="isEditing"
+                >
+                  <dx-button
+                    text="Anuluj"
+                    stylingMode="outlined"
+                    type="normal"
+                    (onClick)="cancelHandler()"
+                  ></dx-button>
+                </dxi-item>
+                <dxi-item
+                  location="before"
+                  widget="dxDropDownButton"
+                  [options]="{
+                    text: 'Akcje',
+                    stylingMode: 'text',
+                    dropDownOptions: { width: 'auto' },
+                    width: 'auto',
+                    items: ['Zakończ jednostkę', 'Anuluj jednostkę']
+                  }"
+                ></dxi-item>
+              </dx-toolbar>
+            </div>
+          </dx-validation-group>
+  
+          <div class="data-part">
+            <dx-accordion [multiple]="true" [collapsible]="true">
+              <div class="accordion-title" *dxTemplate="let t of 'title'">
+                <span>{{ t.title }}</span>
+              </div>
+  
+              <dxi-item title="Dodatkowe informacje">
+                <div *dxTemplate="let i of 'item'">
+                  <div
+                    class="opportunities"
+                    *ngFor="let opportunity of formData.opportunities"
+                  >
+                    <span class="value">{{ opportunity.name }} </span>
+                    <br />
+                    <span class="value black small">{{
+                      opportunity.price | currency: 'USD':'$':'1.0-0'
+                    }}</span>
+                    <br />
+                  </div>
+                </div>
+              </dxi-item>
+  
+            </dx-accordion>
+          </div>
+        </dx-scroll-view>
+      </ng-container>
+  
+      <dx-load-panel
+        container=".panel"
+        [width]="300"
+        [visible]="isLoading"
+        [showPane]="false"
+        [position]="{ of: '.panel' }"
+      ></dx-load-panel>
+    </div>
+  </div>

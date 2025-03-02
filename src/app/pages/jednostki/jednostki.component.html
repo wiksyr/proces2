@@ -1,0 +1,110 @@
+
+
+    <dx-load-panel
+    *ngIf="isLoading"
+    [visible]="isLoading"
+    [showIndicator]="true"
+    [message]="loadingMsg"
+    [width]="600"
+    [height]="300"
+    [shadingColor]="'rgba(0, 0, 0, 0.4)'">
+    </dx-load-panel>
+
+<div class="view-wrapper list-page crm-contact-list">
+        
+        <dx-data-grid 
+        class="grid theme-dependent"
+        [title]="'Jednostki'"
+        id="gridContainerJednostki"
+        keyExpr="jednostkaId"
+        [allowColumnReordering]="true"
+        [showBorders]="true"
+        [showColumnLines]="false"
+        [showRowLines]="true"
+        [showBorders]="true"
+        [rowAlternationEnabled]="true"
+        (onRowClick)="rowClick($event)"
+        [dataSource]="data"
+        >
+                
+            <dxo-toolbar>
+                <dxi-item location="after">
+                <div *dxTemplate>
+                    <dx-button icon="refresh" [text]="'Odśwież'" (onClick)="refreshDataGrid()"> </dx-button>
+                </div>
+                </dxi-item>
+                <dxi-item location="after">
+                <div *dxTemplate>
+                    <dx-button icon="insertrowbelow" [text]="'Dobierz'" (onClick)="loadPage()"> </dx-button>
+                </div>
+                </dxi-item>
+                <dxi-item name="searchPanel" locateInMenu="auto"></dxi-item>
+                <dxi-item name="columnChooserButton"></dxi-item>
+            </dxo-toolbar>
+                
+
+            <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+            <dxo-paging [pageSize]="5"></dxo-paging>
+            <dxo-pager
+              [visible]="true"
+              [allowedPageSizes]="allowedPageSizes"
+              [displayMode]="displayMode"
+              [showPageSizeSelector]="showPageSizeSelector"
+              [showInfo]="showInfo"
+              [showNavigationButtons]="showNavButtons"
+            >
+            </dxo-pager>
+            <dxo-filter-row
+              visible="true"
+              applyFilter="auto"
+            ></dxo-filter-row>
+            <dxo-header-filter [visible]="'true'"></dxo-header-filter>
+            <dxo-search-panel
+            [visible]="true"
+            [width]="240"
+            placeholder="Szukaj..."
+          ></dxo-search-panel>
+
+            <dxo-editing
+              mode="row"
+              [allowUpdating]="false"
+              [allowDeleting]="false"
+              [allowAdding]="false"
+            >
+            </dxo-editing>
+        
+            <dxi-column
+            dataField="jednostkaId"
+            [width]="90"
+            [hidingPriority]="2">
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+            </dxi-column>
+            <dxi-column
+            dataField="poprzedniaJednostkaId"
+            [width]="90"
+            [hidingPriority]="2">
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+            </dxi-column>
+            <dxi-column
+            dataField="produktNazwa"
+            [width]="340"
+            [hidingPriority]="2">
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+            </dxi-column>
+            <dxi-column
+            dataField="strefaNazwa"
+            [width]="340"
+            [hidingPriority]="2">
+            <dxi-validation-rule type="required"></dxi-validation-rule>
+            </dxi-column>
+        </dx-data-grid>
+        
+        <app-jednostki-panel
+        [userId]="jednostkaId"
+        [(isOpened)]="isPanelOpened"
+        (isOpenedChange)="onOpenedChange($event)"
+        (pinnedChange)="onPinnedChange()"
+        >
+        </app-jednostki-panel>
+
+</div>

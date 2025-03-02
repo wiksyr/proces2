@@ -1,0 +1,104 @@
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { LoginFormComponent, ResetPasswordFormComponent, CreateAccountFormComponent, ChangePasswordFormComponent } from './shared/components';
+import { AuthGuardService } from './shared/services';
+import { HomeComponent } from './pages/home/home.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { DxAccordionModule, DxButtonModule, DxDataGridModule, DxDateBoxModule, DxDropDownButtonModule, DxFormModule, DxLoadPanelModule, DxScrollViewModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule, DxToolbarModule, DxValidationGroupModule, DxValidatorModule } from 'devextreme-angular';
+import { CommonModule } from '@angular/common';
+import { FormTextboxModule } from './components/form-textbox/form-textbox.component';
+import { FormPhotoModule } from './components/form-photo/form-photo.component';
+import { RodzajeProductowComponent } from './pages/rodzaje-productow/rodzaje-productow.component';
+import { JednostkiComponent } from './pages/jednostki/jednostki.component';
+import { JednostkiPanelModule } from './pages/jednostki-panel/jednostki-panel.component';
+import { CzytnikKodowComponent } from './pages/czytnik-kodow/czytnik-kodow.component';
+import { JednostkiBiezaceComponent } from './pages/jednostki-biezace/jednostki-biezace.component';
+
+const routes: Routes = [
+  {
+    path: 'pages/jednostki-biezace',
+    component: JednostkiBiezaceComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
+    path: 'pages/czytnik-kodow',
+    component: CzytnikKodowComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
+    path: 'pages/jednostki',
+    component: JednostkiComponent
+  },
+  {
+    path: 'pages/rodzaje-productow',
+    component: RodzajeProductowComponent
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
+    path: 'login-form',
+    component: LoginFormComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
+    path: 'reset-password',
+    component: ResetPasswordFormComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
+    path: 'create-account',
+    component: CreateAccountFormComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
+    path: 'change-password/:recoveryCode',
+    component: ChangePasswordFormComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
+    path: '**',
+    redirectTo: 'home'
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes, { useHash: true, preloadingStrategy: PreloadAllModules }),  
+    DxDataGridModule, 
+    CommonModule, 
+    DxLoadPanelModule, 
+    DxTextBoxModule, 
+    DxDateBoxModule, 
+    DxTextAreaModule, 
+    DxTemplateModule, 
+    DxAccordionModule,
+    DxButtonModule,
+    DxDropDownButtonModule,
+    DxToolbarModule,
+    DxScrollViewModule,
+    DxFormModule,
+    DxValidatorModule,
+    DxValidationGroupModule,
+    FormTextboxModule,
+    FormPhotoModule,
+    JednostkiPanelModule
+    ],
+  providers: [AuthGuardService],
+  exports: [RouterModule],
+  declarations: [
+    HomeComponent,
+    ProfileComponent,
+    RodzajeProductowComponent,
+    JednostkiComponent,
+    CzytnikKodowComponent,
+    JednostkiBiezaceComponent
+  ]
+})
+export class AppRoutingModule { }
