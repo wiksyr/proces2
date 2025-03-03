@@ -16,6 +16,8 @@ import { JednostkiBiezaceComponent } from './pages/jednostki-biezace/jednostki-b
 import { JednostkiDataResolver } from './services/jednostki-data-resolver';
 import { JednostkiPojedynczaComponent } from './pages/jednostki-pojedyncza/jednostki-pojedyncza.component';
 import { JednostkiBiezaceDataResolver } from './services/jednostki-biezace-data-resolver';
+import { ContactFormModule } from "./components/jednostka-form/jednostka-form.component";
+import { FormItemDateModule } from './components/form-datebox/form-datebox-component';
 
 const routes: Routes = [
   {
@@ -80,14 +82,14 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true, preloadingStrategy: PreloadAllModules }),  
-    DxDataGridModule, 
-    CommonModule, 
-    DxLoadPanelModule, 
-    DxTextBoxModule, 
-    DxDateBoxModule, 
-    DxTextAreaModule, 
-    DxTemplateModule, 
+  imports: [RouterModule.forRoot(routes, { useHash: true, preloadingStrategy: PreloadAllModules }),
+    DxDataGridModule,
+    CommonModule,
+    DxLoadPanelModule,
+    DxTextBoxModule,
+    DxDateBoxModule,
+    DxTextAreaModule,
+    DxTemplateModule,
     DxAccordionModule,
     DxButtonModule,
     DxDropDownButtonModule,
@@ -98,8 +100,9 @@ const routes: Routes = [
     DxValidationGroupModule,
     FormTextboxModule,
     FormPhotoModule,
-    JednostkiPanelModule
-    ],
+    JednostkiPanelModule, 
+    ContactFormModule, 
+    FormItemDateModule],
   providers: [AuthGuardService],
   exports: [RouterModule],
   declarations: [

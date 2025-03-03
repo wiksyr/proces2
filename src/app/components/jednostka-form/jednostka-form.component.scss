@@ -1,7 +1,7 @@
 
-@use "../../../../variables.scss" as *;
+@use "../../variables.scss" as *;
 
-#contact-form {
+#jednostka-form {
   min-height: 250px;
 
   ::ng-deep .form-title {
@@ -19,4 +19,13 @@
 .info {
   position: relative;
   padding-bottom: 30px;
+}
+
+.dx-accordion {
+  .accordion-title {
+    vertical-align: middle;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+  }
 }

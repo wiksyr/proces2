@@ -102,7 +102,7 @@ export class JednostkiPanelComponent implements OnInit, OnChanges, AfterViewChec
   loadUserById = (id: number) => {
     this.isLoading = true;
     
-    this.service.getById(id.toString()).then(result => 
+    this.service.getSkroconaById(id.toString()).then(result => 
       {
         this.formData = result; 
         this.jednostkaData = { ...this.formData };

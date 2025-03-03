@@ -1,4 +1,83 @@
-<h2>Jednostki Form</h2>
-<div class="content-block">
-    <div class="dx-card responsive-paddings">Put your content here</div>
-</div>
+<dx-scroll-view class="view-wrapper-scroll">
+    <div class="view-wrapper">
+      <dx-toolbar class="toolbar-details theme-dependent">
+        <!-- <dxi-item location="before">
+          <dx-button icon="search" stylingMode="text"></dx-button>
+        </dxi-item> -->
+        <dxi-item location="before">
+            <dx-text-box [placeholder]="'Szukaj...'" [width]="'400'" [(value)]="jednostkaId">
+                <dxi-button
+                name="icon"
+                location="before"
+                [options]="{ icon: 'search', elementAttr: { class: 'form-editor-icon' }, stylingMode: 'text' }"
+              ></dxi-button>
+            </dx-text-box>
+        </dxi-item>
+        <dxi-item location="before" [text]="jednostkaName"></dxi-item>
+        <dxi-item location="after" locateInMenu="auto">
+          <dx-button
+            text="Szukaj"
+            (onClick)="search()"
+            type="default"
+            stylingMode="contained"
+          ></dx-button>
+        </dxi-item>
+        <dxi-item location="after">
+          <dx-drop-down-button
+            text="Akcje"
+            stylingMode="text"
+            [items]="['Edytuj', 'Anuluj jednostkę']"
+            [dropDownOptions]="{ width: 'auto' }"
+          ></dx-drop-down-button>
+        </dxi-item>
+        <dxi-item location="after" locateInMenu="auto">
+          <div class="separator"></div>
+        </dxi-item>
+        <dxi-item
+          location="after"
+          locateInMenu="auto"
+          widget="dxButton"
+          showText="inMenu"
+          [options]="{
+            text: 'Kopiuj',
+            icon: 'copy',
+            stylingMode: 'text'
+          }"
+        ></dxi-item>
+        <dxi-item
+          location="after"
+          locateInMenu="auto"
+          widget="dxButton"
+          showText="inMenu"
+          [options]="{
+            text: 'Odśwież',
+            icon: 'refresh',
+            onClick: refresh,
+            stylingMode: 'text'
+          }"
+        ></dxi-item>
+      </dx-toolbar>
+  
+      <div class="panels theme-dependent">
+        <div class="left">
+          <jednostka-form
+            [jednostkaData]="jednostkaData"
+            [isLoading]="isLoading"
+          ></jednostka-form>
+        </div>
+  
+        <div class="right theme-dependent">
+          <!-- <contact-cards
+            [isLoading]="isLoading"
+            [contactName]="contactData?.name"
+            [tasks]="contactData?.tasks"
+            [activities]="contactData?.activities"
+            [activeOpportunities]="activeOpportunities"
+            [closedOpportunities]="closedOpportunities"
+            [notes]="contactNotes"
+            [messages]="contactMessages"
+          ></contact-cards> -->
+        </div>
+      </div>
+    </div>
+  </dx-scroll-view>

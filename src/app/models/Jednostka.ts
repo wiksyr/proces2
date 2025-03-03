@@ -4,7 +4,8 @@ export class Jednostka implements IJednostka {
     jednostkaId: number; 
     poprzedniaJednostkaId: number; 
     produktNazwa: string; 
-    Numer: string;
+    strefaNazwa: string;
+    numer: string;
     anulowana: string;
     procesSterId: string;
     procesDezWstId: string;
@@ -47,7 +48,8 @@ export class Jednostka implements IJednostka {
         jednostkaId: number, 
         poprzedniaJednostkaId: number, 
         produktNazwa: string, 
-        Numer: string,
+        strefaNazwa: string,
+        numer: string,
         anulowana: string,
         procesSterId: string,
         procesDezWstId: string,
@@ -90,7 +92,8 @@ export class Jednostka implements IJednostka {
         this.jednostkaId = jednostkaId;  
         this.poprzedniaJednostkaId = poprzedniaJednostkaId;
         this.produktNazwa = produktNazwa; 
-        this.Numer = Numer;
+        this.numer = numer;
+        this.strefaNazwa = strefaNazwa;
         this.anulowana = anulowana; 
         this.procesSterId = procesSterId; 
         this.procesDezWstId = procesDezWstId;
@@ -172,7 +175,8 @@ export class Jednostka implements IJednostka {
           json[37], 
           json[38], 
           json[39], 
-          json[40]
+          json[40], 
+          json[41]
           );
         }
 }

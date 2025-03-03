@@ -23,15 +23,26 @@ export class JednostkiApiService {
     return this.msgPack.deserializeJednostkaSkroconaArray(arrayBuffer); 
   }
     
-  async getById(id: string): Promise<JednostkaSkrocona> {
+  async getSkroconaById(id: string): Promise<JednostkaSkrocona> {
     const headers = new HttpHeaders({
       'Accept': 'application/x-msgpack'
     });
-    const response = await fetch(`${config.apiUrl}/api/Jednostka/${id}`, {
+    const response = await fetch(`${config.apiUrl}/api/Jednostka/skrocona/szukaj?id=${id}`, {
       headers: { 'Accept': 'application/x-msgpack' }
     }); 
     const arrayBuffer = await response.arrayBuffer();
     return this.msgPack.deserializeJednostkaSkrocona(arrayBuffer); 
+  }
+  
+  async getById(id: string): Promise<Jednostka> {
+    const headers = new HttpHeaders({
+      'Accept': 'application/x-msgpack'
+    });
+    const response = await fetch(`${config.apiUrl}/api/Jednostka/szukaj?id=${id}`, {
+      headers: { 'Accept': 'application/x-msgpack' }
+    }); 
+    const arrayBuffer = await response.arrayBuffer();
+    return this.msgPack.deserializeJednostka(arrayBuffer); 
   }
 
   async getDefault(): Promise<Jednostka[]> {

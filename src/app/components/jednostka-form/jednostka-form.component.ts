@@ -12,12 +12,14 @@ import {
     DxToolbarModule,
     DxValidatorModule,
     DxValidationGroupModule,
+    DxAccordionModule,
   } from 'devextreme-angular';
   import { ValidationRule } from 'devextreme-angular/common';
   import { DxButtonTypes } from 'devextreme-angular/ui/button';
 import { Jednostka } from '../../models/Jednostka';
 import { FormTextboxModule } from '../form-textbox/form-textbox.component';
 import { FormPhotoModule } from '../form-photo/form-photo.component';
+import { FormDateboxComponent, FormItemDateModule } from '../form-datebox/form-datebox-component';
 //   import { ToolbarFormModule } from 'src/app/components/utils/toolbar-form/toolbar-form.component';
   
   @Component({
@@ -26,7 +28,7 @@ import { FormPhotoModule } from '../form-photo/form-photo.component';
     styleUrls: ['./jednostka-form.component.scss'],
   })
   export class JednostkaFormComponent {
-    @Input() contactData: Jednostka|any;
+    @Input() jednostkaData: Jednostka|any;
   
     @Input() isLoading: boolean|any;
   
@@ -37,7 +39,7 @@ import { FormPhotoModule } from '../form-photo/form-photo.component';
     zipCodeValidator: ValidationRule = { type: 'pattern', pattern: /^\d{5}$/, message: 'Zip is invalid' };
   
     handleEditClick() {
-      this.savedData = { ...this.contactData };
+      this.savedData = { ...this.jednostkaData };
       this.isEditing = true;
     }
   
@@ -48,7 +50,7 @@ import { FormPhotoModule } from '../form-photo/form-photo.component';
     }
   
     handleCancelClick() {
-      this.contactData = { ...this.savedData };
+      this.jednostkaData = { ...this.savedData };
       this.isEditing = false;
     }
   }
@@ -56,13 +58,14 @@ import { FormPhotoModule } from '../form-photo/form-photo.component';
   @NgModule({
     imports: [
       DxFormModule,
+      DxAccordionModule,
       DxSelectBoxModule,
       DxButtonModule,
       DxTextBoxModule,
       DxNumberBoxModule,
       DxLoadPanelModule,
       DxValidationGroupModule,
-  
+      FormItemDateModule,
       FormTextboxModule,
       FormPhotoModule,
       DxValidatorModule,

@@ -8,49 +8,51 @@
         (saveButtonClicked)="handleSaveClick($event)"
       >
       </toolbar-form> -->
-  
+      
       <dx-form
-        *ngIf="contactData"
+        *ngIf="jednostkaData"
         class="form last plain-styled-form"
-        [formData]="contactData"
+        [formData]="jednostkaData"
         labelMode="floating"
         [class.view-mode]="!isEditing"
       >
+      
+      
         <dxi-item itemType="group" [colCount]="2">
           <dxo-col-count-by-screen [xs]="2"></dxo-col-count-by-screen>
           <dxi-item>
             <div *dxTemplate>
-              <form-photo [link]="contactData.image" [size]="184"></form-photo>
+              <form-photo [link]="'https://th.bing.com/th/id/R.ea17070f3a1a5b00a5bd7bd392fe7007?rik=jOK6fYqAeiqJTw&pid=ImgRaw&r=0'" [size]="184"></form-photo>
             </div>
           </dxi-item>
-          <dxi-item itemType="group">
-            <dxi-item>
-            </dxi-item>
+
+          <dxi-item itemType="group" [colCount]="3">
+            <dxo-col-count-by-screen [xs]="3"></dxo-col-count-by-screen>
   
-            <dxi-item>
+            <dxi-item [colSpan]="3">
               <form-textbox
                 *dxTemplate
-                label="First Name"
-                [(value)]="contactData.firstName"
+                label="Jednostka Id:"
+                [(value)]="jednostkaData.jednostkaId"
                 [isEditing]="isEditing"
               ></form-textbox>
             </dxi-item>
   
-            <dxi-item>
+            <dxi-item [colSpan]="3">
               <form-textbox
                 *dxTemplate
-                label="Last Name"
-                [(value)]="contactData.lastName"
+                label="Poprzednia Jednostka Id:"
+                [(value)]="jednostkaData.poprzedniaJednostkaId"
                 [isEditing]="isEditing"
               ></form-textbox>
             </dxi-item>
           </dxi-item>
   
-          <dxi-item>
+          <dxi-item [colSpan]="2">
             <form-textbox
               *dxTemplate
-              label="Position"
-              [(value)]="contactData.position"
+              label="Produkt:"
+              [(value)]="jednostkaData.produktNazwa"
               [isEditing]="isEditing"
             ></form-textbox>
           </dxi-item>
@@ -58,29 +60,8 @@
           <dxi-item cssClass="accent">
             <form-textbox
               *dxTemplate
-              label="Assigned to"
-              [(value)]="contactData.manager"
-              [isEditing]="isEditing"
-            ></form-textbox>
-          </dxi-item>
-  
-          <dxi-item cssClass="accent" [colSpan]="2">
-            <form-textbox
-              *dxTemplate
-              label="Company"
-              [(value)]="contactData.company"
-              [isEditing]="isEditing"
-            ></form-textbox>
-          </dxi-item>
-        </dxi-item>
-  
-        <dxi-item itemType="group" [colCount]="4" caption="Contacts">
-          <dxo-col-count-by-screen [xs]="2"></dxo-col-count-by-screen>
-          <dxi-item [colSpan]="4">
-            <form-textbox
-              *dxTemplate
-              label="Address"
-              [(value)]="contactData.address"
+              label="Strefa:"
+              [(value)]="jednostkaData.strefaNazwa"
               [isEditing]="isEditing"
             ></form-textbox>
           </dxi-item>
@@ -88,84 +69,355 @@
           <dxi-item [colSpan]="2">
             <form-textbox
               *dxTemplate
-              label="City"
-              [(value)]="contactData.city"
+              label="Numer:"
+              [(value)]="jednostkaData.numer"
               [isEditing]="isEditing"
             ></form-textbox>
           </dxi-item>
   
-          <dxi-item>
-            <form-textbox
-              *dxTemplate
-              label="State"
-              [(value)]="contactData.state.stateShort"
-              [isEditing]="isEditing"
-            ></form-textbox>
-          </dxi-item>
-  
-          <dxi-item>
-            <dx-number-box
-              *dxTemplate
-              label="Zip Code"
-              stylingMode="filled"
-              valueChangeEvent="keyup input change"
-              [(value)]="contactData.zipCode"
-              [readOnly]="!isEditing"
-              [elementAttr]="{ class: 'form-editor' }"
-              [inputAttr]="{ class: 'form-editor-input' }"
-            >
-              <dx-validator [validationRules]="[zipCodeValidator]"></dx-validator>
-            </dx-number-box>
-          </dxi-item>
         </dxi-item>
-  
-        <dxi-item itemType="group" [colCount]="2" cssClass="contact-fields-group">
-          <dxo-col-count-by-screen [xs]="2"></dxo-col-count-by-screen>
-          <dxi-item>
-            <div *dxTemplate>
+        
+          <dxi-item itemType="group" [colCount]="3" [caption]="'Szczegóły'">
+            
+            <dxo-col-count-by-screen [xs]="3"></dxo-col-count-by-screen>
+    
+            <dxi-item>
+              <div *dxTemplate>
+                <form-item-date
+                  label="Data utworzenia"
+                  [isEditing]="isEditing"
+                  [(value)]="jednostkaData.dataUtworzenia"
+                ></form-item-date>
+              </div>
+            </dxi-item>
+    
+            <dxi-item>
+              <div *dxTemplate>
+                <form-item-date
+                  label="Data modyfikacji"
+                  [isEditing]="isEditing"
+                  [(value)]="jednostkaData.dataModyfikacji"
+                ></form-item-date>
+              </div>
+            </dxi-item>
+    
+            <dxi-item>
               <form-textbox
-                mask="+1(000)000-0000"
-                label="Phone"
-                [(value)]="contactData.phone"
+                *dxTemplate
+                label="Numer zbiorczy:"
+                [(value)]="jednostkaData.numerZbiorczy"
                 [isEditing]="isEditing"
-                [validators]="[]"
               ></form-textbox>
-              <dx-button
-                class="form-item-button"
-                stylingMode="outlined"
-                [visible]="!isEditing"
-                [text]="'Call'"
-                [icon]="'tel'"
-                [type]="'default'"
-              ></dx-button>
-            </div>
-          </dxi-item>
-  
-          <dxi-item>
-            <div *dxTemplate>
+            </dxi-item>
+            
+            <dxi-item>
               <form-textbox
-                label="Email"
-                [(value)]="contactData.email"
+                *dxTemplate
+                label="Proces sterylizacji:"
+                [(value)]="jednostkaData.procesSterId"
                 [isEditing]="isEditing"
-                [validators]="[{ type: 'email' }]"
               ></form-textbox>
-              <dx-button
-                class="form-item-button"
-                stylingMode="outlined"
-                [visible]="!isEditing"
-                [text]="'Send Email'"
-                [icon]="'email'"
-                [type]="'default'"
-              ></dx-button>
-            </div>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Proces dezynfekcji wstępnej:"
+                [(value)]="jednostkaData.procesDezWstId"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Zakończona:"
+                [(value)]="jednostkaData.zakonczona"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Cito:"
+                [(value)]="jednostkaData.cito"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Zdarzenie:"
+                [(value)]="jednostkaData.zdarzenieId"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <div *dxTemplate>
+                <form-item-date
+                  label="Przyjęcie:"
+                  [isEditing]="isEditing"
+                  [(value)]="jednostkaData.przyjecieId"
+                ></form-item-date>
+              </div>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Wydanie Id:"
+                [(value)]="jednostkaData.wydanieId"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Wersja naklejki:"
+                [(value)]="jednostkaData.wersjaNaklejki"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Koszt:"
+                [(value)]="jednostkaData.koszt"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Koszt rzeczwisty:"
+                [(value)]="jednostkaData.kosztRzeczywisty"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Zrodło ceny jednostki:"
+                [(value)]="jednostkaData.zrodloCenyJednostki"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Termin ważności:"
+                [(value)]="jednostkaData.terminWaznosci"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Termin ważności (dni):"
+                [(value)]="jednostkaData.terminWaznosciDni"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Anulowana:"
+                [(value)]="jednostkaData.anulowana"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <div *dxTemplate>
+                <form-item-date
+                  label="Data anulowania:"
+                  [isEditing]="isEditing"
+                  [(value)]="jednostkaData.dataAnulowania"
+                ></form-item-date>
+              </div>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Anulował:"
+                [(value)]="jednostkaData.anulowal"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Tagi zmiany:"
+                [(value)]="jednostkaData.tagiZmiany"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Zweryfikowana przy przyjmowaniu:"
+                [(value)]="jednostkaData.zweryfikowanaPrzyPrzyjmowaniu"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Zweryfikowana przy pakowaniu:"
+                [(value)]="jednostkaData.zweryfikowanaPrzyPakowaniu"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Zrealizowane jednostki Id:"
+                [(value)]="jednostkaData.zrealizowaneJednostkiId"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <div *dxTemplate>
+                <form-item-date
+                  label="Historia jednostki:"
+                  [isEditing]="isEditing"
+                  [(value)]="jednostkaData.historiaJednostkiId"
+                ></form-item-date>
+              </div>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Wydanie na strefie Id:"
+                [(value)]="jednostkaData.wydanieNaStrefieID"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Znaczniki:"
+                [(value)]="jednostkaData.znaczniki"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Liczba użyć:"
+                [(value)]="jednostkaData.liczbaUzyc"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Data zapakowania:"
+                [(value)]="jednostkaData.dataZapakowania"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Zapakował:"
+                [(value)]="jednostkaData.zapakowalId"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Wydanie przez klienta Id:"
+                [(value)]="jednostkaData.wydaniePrzezKlientaId"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Przyjęcie przez klienta Id:"
+                [(value)]="jednostkaData.przyjeciePrzezKlientaId"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Etykieta zbiorcza:"
+                [(value)]="jednostkaData.etykietaZbiorczaId"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Proces:"
+                [(value)]="jednostkaData.procesId"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Reklamacja:"
+                [(value)]="jednostkaData.reklamacjaId"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Są uwagi"
+                [(value)]="jednostkaData.saUwagi"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Są komentarze:"
+                [(value)]="jednostkaData.saKomentarze"
+                [isEditing]="isEditing"
+              ></form-textbox>
+            </dxi-item>
+    
           </dxi-item>
-        </dxi-item>
+          
       </dx-form>
     </dx-validation-group>
     <dx-load-panel
-      container="#contact-form"
-      [position]="{ of: '#contact-form' }"
-      [visible]="!contactData || isLoading"
+      container="#jednostka-form"
+      [position]="{ of: '#jednostka-form' }"
+      [visible]="isLoading"
       [showPane]="false"
     ></dx-load-panel>
   </div>

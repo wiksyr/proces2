@@ -1,8 +1,9 @@
 export interface IJednostka { 
     jednostkaId: number; 
     poprzedniaJednostkaId: number; 
-    produktNazwa: string; 
-    Numer: string;
+    produktNazwa: string;
+    strefaNazwa: string;  
+    numer: string;
     anulowana: string;
     procesSterId: string;
     procesDezWstId: string;
