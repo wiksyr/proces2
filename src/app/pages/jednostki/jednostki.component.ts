@@ -5,6 +5,7 @@ import deMessages from "./pl.json";
 import { JednostkiApiService } from '../../services/JednostkiApiService';
 import { DxDataGridTypes } from 'devextreme-angular/ui/data-grid';
 import { JednostkaSkrocona } from '../../models/JednostkaSkrocona';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-jednostki',
@@ -23,7 +24,7 @@ export class JednostkiComponent {
   rawdata: string= ""; 
   pageSize: number = 20000; 
   pageNumber: number = 1; 
-  loadingMsg: string = "Pobieram..."
+  loadingMsg: string = "Pobieram ..."
   selectedRodzajProduktu: JednostkaSkrocona | undefined;
   colCountByScreen: object; 
   hasSelected: boolean = false;
@@ -32,7 +33,7 @@ export class JednostkiComponent {
   jednostkaId: number|any = 1;
   isPanelOpened = false;
 
-  constructor(private apiService: JednostkiApiService) { 
+  constructor(private apiService: JednostkiApiService, private route: ActivatedRoute) { 
     loadMessages(deMessages);
     locale('pl');
     this.isLoading = true;  
@@ -136,8 +137,6 @@ async loadPage() {
         finalData.push(item); 
       }
 
-
-
       this.pageNumber += 10; 
     }
 
@@ -192,11 +191,7 @@ clearEvents() {
 }
 
   async ngOnInit() {
-    // Calling the API and subscribing to the observable
-      const tempData = await this.apiService.getSkrocona(this.pageSize, this.pageNumber)
-      this.data.push(...tempData); 
-      this.pageNumber + 1; 
-
+    this.data = this.route.snapshot.data['data']; 
     this.isLoading = false; 
   }
 

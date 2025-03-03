@@ -1,8 +1,7 @@
 
 
-<div class="content-block">
 
-    <dx-load-panel
+<dx-load-panel
     *ngIf="isLoading"
     [visible]="isLoading"
     [showIndicator]="true"
@@ -10,9 +9,10 @@
     [width]="600"
     [height]="300"
     [shadingColor]="'rgba(0, 0, 0, 0.4)'">
-    </dx-load-panel>
+</dx-load-panel>
 
-    <div class="column">
+<div class="view-wrapper list-page crm-contact-list">
+      
         <dx-data-grid 
         class="grid theme-dependent"
         [title]="'Rodzaje Produktów'"
@@ -39,16 +39,16 @@
         [dataSource]="data"
 
         >
-      
-  <dxo-toolbar>
-    <dxi-item location="after">
-      <div *dxTemplate>
-        <dx-button icon="refresh" (onClick)="refreshDataGrid()"> </dx-button>
-      </div>
-    </dxi-item>
-    <dxi-item name="searchPanel" locateInMenu="auto"></dxi-item>
-    <dxi-item name="columnChooserButton"></dxi-item>
-  </dxo-toolbar>
+            
+        <dxo-toolbar>
+          <dxi-item location="after">
+            <div *dxTemplate>
+              <dx-button icon="refresh" (onClick)="refreshDataGrid()"> </dx-button>
+            </div>
+          </dxi-item>
+          <dxi-item name="searchPanel" locateInMenu="auto"></dxi-item>
+          <dxi-item name="columnChooserButton"></dxi-item>
+        </dxo-toolbar>
     
 
             <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
@@ -89,6 +89,7 @@
             </dxi-column>
             <dxi-column
             dataField="nazwa"
+            [width]="940"
             [hidingPriority]="2">
             <dxi-validation-rule type="required"></dxi-validation-rule>
             </dxi-column>
@@ -102,21 +103,5 @@
 
         </dx-data-grid>
         
-        </div>
-
-        <div class="column" *ngIf="hasSelected">
-            <dx-form id="form"
-            [formData]="selectedRodzajProduktu"
-            labelLocation="top"
-            [colCountByScreen]="colCountByScreen"
-            >
-            </dx-form>
-            <dx-button
-            [text]="btnHideLabel"
-            type="secondary"
-            (onClick)="onHide($event)">
-            </dx-button>
-            
-        </div>
-
 </div>
+

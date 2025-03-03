@@ -25,6 +25,10 @@ export const navigation = [
       {
         text: 'Bieżące',
         path: '/pages/jednostki-biezace'
+      },
+      {
+        text: 'Szukaj',
+        path: '/pages/jednostki-pojedyncza',
       }
     ]
   },

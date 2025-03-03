@@ -27,12 +27,12 @@ import { DxButtonTypes } from 'devextreme-angular/ui/button';
 import { FormPhotoModule } from '../../components/form-photo/form-photo.component';
 import { FormTextboxModule } from '../../components/form-textbox/form-textbox.component';
 import { distinctUntilChanged, Subject, Subscription} from 'rxjs';
-import { JednostkaDto } from '../../models/JednostkaDto';
 import { JednostkiApiService } from '../../services/JednostkiApiService';
 import { ScreenService } from '../../shared/services';
 import { Router } from '@angular/router';
 import deMessages from "../../pl.json";
 import { loadMessages, locale } from 'devextreme/localization';
+import { JednostkaSkrocona } from '../../models/JednostkaSkrocona';
 //import { Contact } from 'src/app/types/contact';
 
 
@@ -53,9 +53,9 @@ export class JednostkiPanelComponent implements OnInit, OnChanges, AfterViewChec
 
   private pinEventSubject = new Subject<boolean>();
 
-  formData: JednostkaDto|any;
+  formData: JednostkaSkrocona|any;
 
-  jednostkaData: JednostkaDto|any;
+  jednostkaData: JednostkaSkrocona|any;
 
   pinned = false;
 

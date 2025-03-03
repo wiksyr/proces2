@@ -9,7 +9,7 @@ import { RodzajProduktu } from '../../models/RodzajProduktu';
 @Component({
   selector: 'app-rodzaje-productow',
   templateUrl: './rodzaje-productow.component.html',
-  styleUrl: './rodzaje-productow.component.css',
+  styleUrl: './rodzaje-productow.component.scss',
   standalone: false
 })
 export class RodzajeProductowComponent {

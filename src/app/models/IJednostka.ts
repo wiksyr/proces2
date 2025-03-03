@@ -1,4 +1,4 @@
-export interface JednostkaDto { 
+export interface IJednostka { 
     jednostkaId: number; 
     poprzedniaJednostkaId: number; 
     produktNazwa: string; 

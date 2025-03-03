@@ -1,10 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import { JednostkaDto } from '../../models/JednostkaDto';
 import { JednostkiApiService } from '../../services/JednostkiApiService';
 import { loadMessages, locale } from 'devextreme/localization';
 import deMessages from "../../pl.json";
 import { DxDataGridComponent } from 'devextreme-angular';
 import { DxDataGridTypes } from 'devextreme-angular/ui/data-grid';
+import { Jednostka } from '../../models/Jednostka';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-jednostki-biezace',
@@ -18,13 +19,13 @@ export class JednostkiBiezaceComponent {
   
   events: Array<string> = [];
 
-  data: JednostkaDto[] = [];; // Variable to hold the fetched data
+  data: Jednostka[] = [];; // Variable to hold the fetched data
   errorMessage: string = ''; // Variable to hold any error message
   rawdata: string= ""; 
-  pageSize: number = 5000; 
+  pageSize: number = 10000; 
   pageNumber: number = 1; 
-  loadingMessage: string = "Pobieram dane ..."; 
-  selectedRodzajProduktu: JednostkaDto | undefined;
+  loadingMessage: string = "Pobieram ..."; 
+  selectedRodzajProduktu: Jednostka | undefined;
   colCountByScreen: object; 
   hasSelected: boolean = false;
   btnHideLabel: string = "Zamknij";
@@ -32,7 +33,7 @@ export class JednostkiBiezaceComponent {
   jednostkaId: number|any = 1;
   isPanelOpened = false;
 
-  constructor(private apiService: JednostkiApiService) { 
+  constructor(private apiService: JednostkiApiService, private route: ActivatedRoute) { 
     loadMessages(deMessages);
     locale('pl');
     this.isLoading = true;  
@@ -58,56 +59,86 @@ showInfo = false;
 showNavButtons = true;
 
 
-refreshDataGrid() {
+async refreshDataGrid() {
     this.isLoading = true; 
     this.pageNumber = 1;
-    // Calling the API and subscribing to the observable
-    for(let i=0; i<20; i++)
-    {
-      this.apiService.getPages(this.pageSize, this.pageNumber).subscribe({
-        next: (data) => {
-          // Handle the response (array of products)
-            for(const item of data)
-              {
-                this.data.push(item); 
-              }
-              
-          this.isLoading = false; 
-        },
-        error: (err) => {
-          // Handle error if the HTTP request fails
-          this.errorMessage = 'Failed to load products';
-          console.error('Error loading products:', err);
-        },
-      });
-      this.pageNumber +=1; 
-    }
+    const tempData = await this.apiService.getPages(this.pageSize, this.pageNumber); 
+    this.isLoading = false;
 }
 
-loadPage() {
+async loadPage() {
   this.isLoading = true; 
   this.pageNumber += 1;
+  const finalData: Jednostka[] = []; 
   // Calling the API and subscribing to the observable
-    for(let i=0; i<20; i++)
+    for(let i=0; i<5; i++)
       {
-        this.apiService.getPages(this.pageSize, this.pageNumber).subscribe({
-          next: (data) => {
-            // Handle the response (array of products)
-            for(const item of data)
-              {
-                this.data.push(item); 
-              }
-              
-            this.isLoading = false; 
-          },
-          error: (err) => {
-            // Handle error if the HTTP request fails
-            this.errorMessage = 'Failed to load products';
-            console.error('Error loading products:', err);
-          },
-        });
-        this.pageNumber +=1; 
+        const f1 = this.apiService.getPages(this.pageSize, this.pageNumber); 
+        const f2 = this.apiService.getPages(this.pageSize+1, this.pageNumber); 
+        const f3 = this.apiService.getPages(this.pageSize+2, this.pageNumber); 
+        const f4 = this.apiService.getPages(this.pageSize+3, this.pageNumber); 
+        const f5 = this.apiService.getPages(this.pageSize+4, this.pageNumber); 
+        const f6 = this.apiService.getPages(this.pageSize+5, this.pageNumber); 
+        const f7 = this.apiService.getPages(this.pageSize+6, this.pageNumber); 
+        const f8 = this.apiService.getPages(this.pageSize+7, this.pageNumber); 
+        const f9 = this.apiService.getPages(this.pageSize+8, this.pageNumber); 
+        const f10 = this.apiService.getPages(this.pageSize+9, this.pageNumber); 
+        const f11 = this.apiService.getPages(this.pageSize+10, this.pageNumber); 
+        
+        const [data1, data2, data3, data4, data5, data6, data7, data8, data9, data10] = await Promise.all([f1, f2, f3, f4, f5, f6, f7, f8, f9, f10])
+        
+      for (let item of data1)
+        {
+          finalData.push(item); 
+        }
+        for (let item of data2)
+        {
+          finalData.push(item); 
+        }
+        for (let item of data3)
+        {
+          finalData.push(item); 
+        }
+        for (let item of data4)
+        {
+          finalData.push(item); 
+        }
+        for (let item of data5)
+        {
+          finalData.push(item); 
+        }
+        for (let item of data6)
+        {
+          finalData.push(item); 
+        }
+        for (let item of data7)
+        {
+          finalData.push(item); 
+        }
+        for (let item of data8)
+        {
+          finalData.push(item); 
+        }
+        for (let item of data9)
+        {
+          finalData.push(item); 
+        }
+        for (let item of data10)
+        {
+          finalData.push(item); 
+        }
+    
+        this.pageNumber +=10; 
       }
+      
+    for (let item of finalData)
+      {
+        this.data.push(item); 
+      }
+      
+  this.isLoading = false; 
+  this.loadingMessage = `Pobieram ...`
+  this.dataGrid?.instance.refresh(); 
 }
 
 removeFilter() { 
@@ -151,28 +182,8 @@ clearEvents() {
 }
 
   ngOnInit(): void {
-    // Calling the API and subscribing to the observable
-
-      for(let i=0; i<20; i++)
-        {
-          this.apiService.getPages(this.pageSize, this.pageNumber).subscribe({
-          next: (data) => {
-            // Handle the response (array of products)
-            for(const item of data)
-            {
-              this.data.push(item); 
-            }
-            
-            this.isLoading = false; 
-          },
-          error: (err) => {
-            // Handle error if the HTTP request fails
-            this.errorMessage = 'Failed to load products';
-            console.error('Error loading products:', err);
-          },
-          });
-          this.pageNumber += 1; 
-        }
+      this.data = this.route.snapshot.data['data']; 
+      this.isLoading = false; 
     }
   
 

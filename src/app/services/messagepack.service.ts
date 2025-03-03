@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { encode, decode } from '@msgpack/msgpack';
 import { RodzajProduktu } from '../models/RodzajProduktu';
 import { JednostkaSkrocona } from '../models/JednostkaSkrocona';
+import { Jednostka } from '../models/Jednostka';
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +39,16 @@ export class MessagePackService {
   deserializeJednostkaSkroconaArray(data: ArrayBuffer): JednostkaSkrocona[] {
     const jsonArray = decode(new Uint8Array(data)) as any[]; // Convert to JSON array
     return jsonArray.map(json => JednostkaSkrocona.fromJSON(json));  // Convert JSON to class instances
+  }
+  
+  deserializeJednostka(data: ArrayBuffer): Jednostka {
+    const jsonData = decode(new Uint8Array(data)); // Convert binary to JSON
+    return Jednostka.fromJSON(jsonData); // Convert JSON to a TypeScript class instance
+  }
+
+  // Deserialize MessagePack binary data into an array of LargeData objects
+  deserializeJednostkaArray(data: ArrayBuffer): Jednostka[] {
+    const jsonArray = decode(new Uint8Array(data)) as any[]; // Convert to JSON array
+    return jsonArray.map(json => Jednostka.fromJSON(json));  // Convert JSON to class instances
   }
 }

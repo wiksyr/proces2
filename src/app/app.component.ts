@@ -1,8 +1,5 @@
-import { Component, HostBinding, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { AuthService, ScreenService, AppInfoService } from './shared/services';
-import { JednostkiComponent } from './pages/jednostki/jednostki.component';
-import { RodzajeProductowComponent } from './pages/rodzaje-productow/rodzaje-productow.component';
-import { JednostkiBiezaceComponent } from './pages/jednostki-biezace/jednostki-biezace.component';
 
 @Component({
   selector: 'app-root',
@@ -16,12 +13,8 @@ export class AppComponent  {
     return `${sizeClassName} app` ;
   }
 
-  @ViewChild('container', { read: ViewContainerRef, static: true }) container!: ViewContainerRef;
-
   ngOnInit() {
-    this.container.createComponent(RodzajeProductowComponent); 
-    this.container.createComponent(JednostkiComponent); 
-    this.container.createComponent(JednostkiBiezaceComponent); // Preloads DashboardComponent in memory
+    
   }
 
   constructor(private authService: AuthService, private screen: ScreenService, public appInfo: AppInfoService) { }

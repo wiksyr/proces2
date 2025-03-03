@@ -13,11 +13,20 @@ import { JednostkiComponent } from './pages/jednostki/jednostki.component';
 import { JednostkiPanelModule } from './pages/jednostki-panel/jednostki-panel.component';
 import { CzytnikKodowComponent } from './pages/czytnik-kodow/czytnik-kodow.component';
 import { JednostkiBiezaceComponent } from './pages/jednostki-biezace/jednostki-biezace.component';
+import { JednostkiDataResolver } from './services/jednostki-data-resolver';
+import { JednostkiPojedynczaComponent } from './pages/jednostki-pojedyncza/jednostki-pojedyncza.component';
+import { JednostkiBiezaceDataResolver } from './services/jednostki-biezace-data-resolver';
 
 const routes: Routes = [
   {
+    path: 'pages/jednostki-pojedyncza',
+    component: JednostkiPojedynczaComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
     path: 'pages/jednostki-biezace',
     component: JednostkiBiezaceComponent,
+    resolve: { data: JednostkiBiezaceDataResolver },
     canActivate: [ AuthGuardService ]
   },
   {
@@ -32,7 +41,8 @@ const routes: Routes = [
   },
   {
     path: 'pages/jednostki',
-    component: JednostkiComponent
+    component: JednostkiComponent, 
+    resolve: { data: JednostkiDataResolver }
   },
   {
     path: 'pages/rodzaje-productow',
@@ -98,7 +108,8 @@ const routes: Routes = [
     RodzajeProductowComponent,
     JednostkiComponent,
     CzytnikKodowComponent,
-    JednostkiBiezaceComponent
+    JednostkiBiezaceComponent,
+    JednostkiPojedynczaComponent
   ]
 })
 export class AppRoutingModule { }
