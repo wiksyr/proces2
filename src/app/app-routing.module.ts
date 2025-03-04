@@ -18,8 +18,21 @@ import { JednostkiPojedynczaComponent } from './pages/jednostki-pojedyncza/jedno
 import { JednostkiBiezaceDataResolver } from './services/jednostki-biezace-data-resolver';
 import { ContactFormModule } from "./components/jednostka-form/jednostka-form.component";
 import { FormItemDateModule } from './components/form-datebox/form-datebox-component';
+import { JednostkiTabletComponent } from './pages/jednostki-tablet/jednostki-tablet.component';
+import { JednostkiResponsiveComponent } from './pages/jednostki-responsive/jednostki-responsive.component';
 
 const routes: Routes = [
+  {
+    path: 'pages/jednostki-responsive',
+    component: JednostkiResponsiveComponent,
+    resolve: { data: JednostkiDataResolver }, 
+    canActivate: [ AuthGuardService ]
+  },
+  {
+    path: 'pages/jednostki-tablet',
+    component: JednostkiTabletComponent,
+    canActivate: [ AuthGuardService ]
+  },
   {
     path: 'pages/jednostki-pojedyncza',
     component: JednostkiPojedynczaComponent,
@@ -112,7 +125,9 @@ const routes: Routes = [
     JednostkiComponent,
     CzytnikKodowComponent,
     JednostkiBiezaceComponent,
-    JednostkiPojedynczaComponent
+    JednostkiPojedynczaComponent,
+    JednostkiTabletComponent,
+    JednostkiResponsiveComponent
   ]
 })
 export class AppRoutingModule { }

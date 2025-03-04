@@ -20,7 +20,7 @@ export const navigation = [
     items: [
       {
         text: 'Skócony',
-        path: '/pages/jednostki'
+        path: '/pages/jednostki-responsive'
       },
       {
         text: 'Bieżące',
