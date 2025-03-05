@@ -1,0 +1,15 @@
+<div>
+    <div>
+        <form-photo [link]="link"></form-photo>
+    </div>
+    <div>
+        <dx-toolbar class="toolbar-details theme-dependent">
+            <dxi-item location="before">
+                <dx-button [text]="''" icon="arrowleft" (onClick)="movePrevious()"></dx-button>
+            </dxi-item>
+            <dxi-item location="before">
+                <dx-button [text]="''" icon="arrowright" (onClick)="moveNext()"></dx-button>
+            </dxi-item>
+        </dx-toolbar>
+    </div>
+</div>

@@ -20,6 +20,7 @@ import { Jednostka } from '../../models/Jednostka';
 import { FormTextboxModule } from '../form-textbox/form-textbox.component';
 import { FormPhotoModule } from '../form-photo/form-photo.component';
 import { FormDateboxComponent, FormItemDateModule } from '../form-datebox/form-datebox-component';
+import { FormGalleryModule } from "../form-gallery/form-gallery.component";
 //   import { ToolbarFormModule } from 'src/app/components/utils/toolbar-form/toolbar-form.component';
   
   @Component({
@@ -35,6 +36,12 @@ import { FormDateboxComponent, FormItemDateModule } from '../form-datebox/form-d
     savedData: Jednostka|any = null;
   
     isEditing = false;
+
+    links = [
+      'https://th.bing.com/th/id/R.ea17070f3a1a5b00a5bd7bd392fe7007?rik=jOK6fYqAeiqJTw&pid=ImgRaw&r=0', 
+      'https://th.bing.com/th/id/R.f6d6d80853a18fbd6c397f2e34f97124?rik=hni8YgstVGAJAw&pid=ImgRaw&r=0', 
+      'https://a.allegroimg.com/original/11b5e3/0ccfd087451ebb9edd0c8629d64d/Narzedzie-do-ROBIENIA-DZIUREK-w-paskach-KINZO'
+    ]
   
     zipCodeValidator: ValidationRule = { type: 'pattern', pattern: /^\d{5}$/, message: 'Zip is invalid' };
   
@@ -57,20 +64,21 @@ import { FormDateboxComponent, FormItemDateModule } from '../form-datebox/form-d
   
   @NgModule({
     imports: [
-      DxFormModule,
-      DxAccordionModule,
-      DxSelectBoxModule,
-      DxButtonModule,
-      DxTextBoxModule,
-      DxNumberBoxModule,
-      DxLoadPanelModule,
-      DxValidationGroupModule,
-      FormItemDateModule,
-      FormTextboxModule,
-      FormPhotoModule,
-      DxValidatorModule,
-      CommonModule,
-    ],
+    DxFormModule,
+    DxAccordionModule,
+    DxSelectBoxModule,
+    DxButtonModule,
+    DxTextBoxModule,
+    DxNumberBoxModule,
+    DxLoadPanelModule,
+    DxValidationGroupModule,
+    FormItemDateModule,
+    FormTextboxModule,
+    FormPhotoModule,
+    DxValidatorModule,
+    CommonModule,
+    FormGalleryModule
+],
     providers: [],
     exports: [JednostkaFormComponent],
     declarations: [JednostkaFormComponent],

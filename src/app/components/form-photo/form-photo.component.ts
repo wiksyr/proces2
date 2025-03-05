@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
-  Component, ElementRef, Input, NgModule, OnInit,
+  Component, ElementRef, Input, NgModule, OnChanges, OnInit,
 } from '@angular/core';
 import { DxFileUploaderModule } from 'devextreme-angular/ui/file-uploader';
 
@@ -9,14 +9,14 @@ import { DxFileUploaderModule } from 'devextreme-angular/ui/file-uploader';
   templateUrl: './form-photo.component.html',
   styleUrls: ['./form-photo.component.scss'],
 })
-export class FormPhotoComponent implements OnInit {
-  @Input() link: string|any;
+export class FormPhotoComponent implements OnInit, OnChanges {
+  @Input() link: string|any; 
 
   @Input() editable = false;
 
   @Input() size = 124;
 
-  imageUrl: string|any;
+  imageUrl: string|any; 
 
   hostRef: any;
 
@@ -25,6 +25,10 @@ export class FormPhotoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.imageUrl = `url('${this.link}')`;// `url('data:image/png;base64,${this.link}')`;
+  }
+  
+  ngOnChanges() {
     this.imageUrl = `url('${this.link}')`;// `url('data:image/png;base64,${this.link}')`;
   }
 }

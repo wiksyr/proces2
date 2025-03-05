@@ -21,6 +21,7 @@ import { FormItemDateModule } from './components/form-datebox/form-datebox-compo
 import { JednostkiTabletComponent } from './pages/jednostki-tablet/jednostki-tablet.component';
 import { JednostkiResponsiveComponent } from './pages/jednostki-responsive/jednostki-responsive.component';
 import { CardJednostkaSkroconaModule } from './components/card-jednostka-skrocona/card-jednostka-skrocona.component';
+import { FormGalleryModule } from './components/form-gallery/form-gallery.component';
 
 const routes: Routes = [
   {
@@ -117,7 +118,8 @@ const routes: Routes = [
     JednostkiPanelModule, 
     ContactFormModule, 
     FormItemDateModule, 
-    CardJednostkaSkroconaModule], 
+    CardJednostkaSkroconaModule, 
+    FormGalleryModule], 
   providers: [AuthGuardService],
   exports: [RouterModule],
   declarations: [
