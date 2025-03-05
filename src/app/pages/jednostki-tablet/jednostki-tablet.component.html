@@ -15,7 +15,16 @@
         </dx-text-box>
     </dxi-item>
     <dxi-item location="before">
-        <dx-button [text]="'Szukaj'" icon="search" (onClick)="filter()"></dx-button>
+        <dx-button [text]="''" icon="search" (onClick)="filter()"></dx-button>
+    </dxi-item>
+    <dxi-item location="before">
+        <dx-button [text]="''" icon="arrowleft" (onClick)="movePrevious()"></dx-button>
+    </dxi-item>
+    <dxi-item location="before">
+        <dx-button [text]="''" icon="arrowright" (onClick)="moveNext()"></dx-button>
+    </dxi-item>
+    <dxi-item location="before">
+        <dx-button [text]="''" icon="clear" (onClick)="clear()"></dx-button>
     </dxi-item>
 </dx-toolbar>
 <card-jednostka-skrocona [jednostki]="data" [isLoading]="isLoading"></card-jednostka-skrocona>
