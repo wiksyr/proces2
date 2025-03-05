@@ -1,4 +1,4 @@
-<div *ngIf="isTabletLandscape || isTabletPortrait || isHandsetLandscape || isHandsetPortrait">
+<div *ngIf="!isPCPortrait && !isPCLandscape">
     <app-jednostki-tablet></app-jednostki-tablet>
 </div>
 <div *ngIf="isPCPortrait || isPCLandscape">

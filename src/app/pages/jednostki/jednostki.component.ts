@@ -22,7 +22,7 @@ export class JednostkiComponent {
   data: JednostkaSkrocona[] = [];; // Variable to hold the fetched data
   errorMessage: string = ''; // Variable to hold any error message
   rawdata: string= ""; 
-  pageSize: number = 20000; 
+  pageSize: number = 5000; 
   pageNumber: number = 1; 
   loadingMsg: string = "Pobieram ..."
   selectedRodzajProduktu: JednostkaSkrocona | undefined;
