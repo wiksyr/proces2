@@ -10,6 +10,6 @@ export class JednostkiDataResolver implements Resolve<any> {
   constructor(private dataService: JednostkiApiService) {}
 
   async resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<JednostkaSkrocona[]> {
-    return await this.dataService.getSkrocona(10,1); // Replace with actual API call
+    return await this.dataService.getSkrocona(20000,1); // Replace with actual API call
   }
 }

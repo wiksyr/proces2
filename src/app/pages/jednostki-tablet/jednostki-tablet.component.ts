@@ -15,6 +15,8 @@ export class JednostkiTabletComponent implements OnInit {
 
   data: JednostkaSkrocona[] = []; 
   isLoading: boolean = true; 
+  search: string = "";
+  snapshotData: JednostkaSkrocona[] = [];
 
   constructor(private apiService: JednostkiApiService, private route: ActivatedRoute) { 
     loadMessages(deMessages);
@@ -22,8 +24,14 @@ export class JednostkiTabletComponent implements OnInit {
     this.isLoading = true;  
   };
 
+  filter() { 
+    this.data = this.snapshotData.filter(x => x.jednostkaId.toString().includes(this.search)); 
+    this.data.concat(this.snapshotData.filter(x => x.produktNazwa.includes(this.search))); 
+  }
+
   async ngOnInit() {
-    this.data = this.route.snapshot.data['data']; 
+    this.snapshotData = this.route.snapshot.data['data']; 
+    this.data = this.snapshotData.slice(0,1000); 
     this.isLoading = false; 
   }
 }

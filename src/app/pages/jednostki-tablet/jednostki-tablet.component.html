@@ -1,1 +1,21 @@
+
+
+<dx-toolbar class="toolbar-details theme-dependent">
+    <!-- <dxi-item location="before">
+      <dx-button icon="search" stylingMode="text"></dx-button>
+    </dxi-item> -->
+    <dxi-item location="before">
+
+        <dx-text-box [placeholder]="'Szukaj...'" [width]="'400'" [(value)]="search">
+            <dxi-button
+            name="icon"
+            location="before"
+            [options]="{ icon: 'search', elementAttr: { class: 'form-editor-icon' }, stylingMode: 'text' }"
+        ></dxi-button>
+        </dx-text-box>
+    </dxi-item>
+    <dxi-item location="before">
+        <dx-button [text]="'Szukaj'" icon="search" (onClick)="filter()"></dx-button>
+    </dxi-item>
+</dx-toolbar>
 <card-jednostka-skrocona [jednostki]="data" [isLoading]="isLoading"></card-jednostka-skrocona>
