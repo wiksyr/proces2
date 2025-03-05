@@ -20,6 +20,7 @@ import { ContactFormModule } from "./components/jednostka-form/jednostka-form.co
 import { FormItemDateModule } from './components/form-datebox/form-datebox-component';
 import { JednostkiTabletComponent } from './pages/jednostki-tablet/jednostki-tablet.component';
 import { JednostkiResponsiveComponent } from './pages/jednostki-responsive/jednostki-responsive.component';
+import { CardJednostkaSkroconaModule } from './components/card-jednostka-skrocona/card-jednostka-skrocona.component';
 
 const routes: Routes = [
   {
@@ -115,7 +116,8 @@ const routes: Routes = [
     FormPhotoModule,
     JednostkiPanelModule, 
     ContactFormModule, 
-    FormItemDateModule],
+    FormItemDateModule, 
+    CardJednostkaSkroconaModule], 
   providers: [AuthGuardService],
   exports: [RouterModule],
   declarations: [

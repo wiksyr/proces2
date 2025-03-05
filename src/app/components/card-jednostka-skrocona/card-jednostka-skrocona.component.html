@@ -1,0 +1,26 @@
+<div id="activities-list" [ngClass]="jednostki ? 'load' : null">
+    <dx-list
+      *ngIf="jednostki"
+      class="activities-list"
+      [items]="jednostki"
+      [scrollingEnabled]="false"
+    >
+      <div *dxTemplate="let item of 'item'">
+        <div class="activity">
+          <div class="name">
+            <span>Jednostka Id: <b>{{ item.jednostkaId }}</b></span> <br/>
+            <span>Poprzednia Id: <b>{{ item.poprzedniajednostkaid }} </b></span> <br/>
+            <span>Produkt: <b>{{ item.produktNazwa }} </b></span> <br/>
+            <span>Strefa: <b>{{ item.strefaNazwa }} </b></span> <br/>
+          </div>
+        </div>
+      </div>
+    </dx-list>
+  
+    <dx-load-panel
+      container="#activities-list"
+      [position]="{ of: '#activities-list' }"
+      [visible]="isLoading"
+      [showPane]="false"
+    ></dx-load-panel>
+  </div>
