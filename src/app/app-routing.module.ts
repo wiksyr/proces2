@@ -22,6 +22,7 @@ import { JednostkiTabletComponent } from './pages/jednostki-tablet/jednostki-tab
 import { JednostkiResponsiveComponent } from './pages/jednostki-responsive/jednostki-responsive.component';
 import { CardJednostkaSkroconaModule } from './components/card-jednostka-skrocona/card-jednostka-skrocona.component';
 import { FormGalleryModule } from './components/form-gallery/form-gallery.component';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 const routes: Routes = [
   {
@@ -119,7 +120,8 @@ const routes: Routes = [
     ContactFormModule, 
     FormItemDateModule, 
     CardJednostkaSkroconaModule, 
-    FormGalleryModule], 
+    FormGalleryModule, 
+    ZXingScannerModule], 
   providers: [AuthGuardService],
   exports: [RouterModule],
   declarations: [

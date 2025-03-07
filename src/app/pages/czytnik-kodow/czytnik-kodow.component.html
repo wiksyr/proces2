@@ -1,4 +1,12 @@
-<h2>Czytnik Kodow</h2>
-<div class="content-block">
-    <div class="dx-card responsive-paddings">Put your content here</div>
-</div>
+<div>
+    <h2>Skanuje ... </h2>
+    <div *ngIf="barcodeResult">
+      <h3>Scanned Barcode Result: {{ barcodeResult }}</h3>
+    </div>
+    <zxing-scanner 
+      [formats]="formatsEnabled" 
+      (scanSuccess)="handleScanSuccess($event)"
+      (scanError)="handleScanError($event)"
+    ></zxing-scanner>
+  </div>
+  
