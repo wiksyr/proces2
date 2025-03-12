@@ -1,0 +1,8 @@
+<!-- modal.component.html -->
+<div class="modal">
+    <div class="modal-content">
+        <app-czytnik-kodow (scanResult)="readInsertedData($event)"></app-czytnik-kodow>
+        <br/>
+        <dx-button icon="remove" [text]="'Anuluj'" (onClick)="closeModal()"></dx-button>
+    </div>
+  </div>

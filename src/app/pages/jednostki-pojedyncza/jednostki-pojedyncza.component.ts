@@ -23,6 +23,7 @@ import {
 // import { DxToolbarModule } from 'devextreme-angular/ui/toolbar';
 import { JednostkiApiService } from '../../services/JednostkiApiService';
 import { Jednostka } from '../../models/Jednostka';
+import { CzytnikKodowModalService } from '../../services/czytnikKodowModalService';
 
 @Component({
   selector: 'app-jednostki-pojedyncza',
@@ -34,6 +35,8 @@ export class JednostkiPojedynczaComponent implements OnInit {
   jednostkaId: string = "";
 
   jednostkaData: Jednostka|any;
+
+  isModalOpen: boolean = false;
 
   //contactNotes: Notes;
 
@@ -47,11 +50,20 @@ export class JednostkiPojedynczaComponent implements OnInit {
 
   isLoading = false;
 
-  constructor(private service: JednostkiApiService) {
+  constructor(private service: JednostkiApiService, private czytnikService: CzytnikKodowModalService) {
   }
 
   async ngOnInit() {
     this.isLoading = false;
+
+    this.czytnikService.modalData$.subscribe((data) => {
+      this.jednostkaId = data; // Capture the data passed from the modal
+      this.isModalOpen = false; // Close the modal
+    });
+  }
+
+  openModal() {
+    this.isModalOpen = true;
   }
 
   loadData = async () => {

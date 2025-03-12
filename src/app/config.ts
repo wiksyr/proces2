@@ -5,7 +5,7 @@ export interface AppConfig {
   }
 
 export const config: AppConfig = {
-    apiUrl:  'http://192.168.3.34:1080', //'http://192.168.20.12:1080', //'https://localhost:7247',, 
+    apiUrl:  'https://192.168.20.12:1081', //'https://192.168.3.34:1081',  //'https://localhost:7247',, 
     timeout: 5000, // Timeout in milliseconds
     featureFlag: true,
   };

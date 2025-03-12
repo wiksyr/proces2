@@ -1,5 +1,6 @@
 import {
     Component, NgModule, Input,
+    OnInit,
   } from '@angular/core';
   import { CommonModule } from '@angular/common';
   import {
@@ -21,6 +22,9 @@ import { FormTextboxModule } from '../form-textbox/form-textbox.component';
 import { FormPhotoModule } from '../form-photo/form-photo.component';
 import { FormDateboxComponent, FormItemDateModule } from '../form-datebox/form-datebox-component';
 import { FormGalleryModule } from "../form-gallery/form-gallery.component";
+import { CameraCaptureModalService } from '../../services/cameraCaptureModalService';
+import { AppRoutingModule } from '../../app-routing.module';
+import { SharedModule } from '../../app-shared.module';
 //   import { ToolbarFormModule } from 'src/app/components/utils/toolbar-form/toolbar-form.component';
   
   @Component({
@@ -28,7 +32,7 @@ import { FormGalleryModule } from "../form-gallery/form-gallery.component";
     templateUrl: './jednostka-form.component.html',
     styleUrls: ['./jednostka-form.component.scss'],
   })
-  export class JednostkaFormComponent {
+  export class JednostkaFormComponent implements OnInit {
     @Input() jednostkaData: Jednostka|any;
   
     @Input() isLoading: boolean|any;
@@ -36,6 +40,8 @@ import { FormGalleryModule } from "../form-gallery/form-gallery.component";
     savedData: Jednostka|any = null;
   
     isEditing = false;
+
+    isModalOpen: boolean = false; 
 
     links = [
       'https://th.bing.com/th/id/R.ea17070f3a1a5b00a5bd7bd392fe7007?rik=jOK6fYqAeiqJTw&pid=ImgRaw&r=0', 
@@ -45,6 +51,21 @@ import { FormGalleryModule } from "../form-gallery/form-gallery.component";
   
     zipCodeValidator: ValidationRule = { type: 'pattern', pattern: /^\d{5}$/, message: 'Zip is invalid' };
   
+    constructor(private cameraService: CameraCaptureModalService) { 
+
+    }
+
+    ngOnInit(): void {
+      this.cameraService.modalData$.subscribe((data) => {
+        this.links.push(data); // Capture the data passed from the modal
+        this.isModalOpen = false; // Close the modal
+      });
+    }
+
+    openModal() { 
+      this.isModalOpen = true;
+    }
+
     handleEditClick() {
       this.savedData = { ...this.jednostkaData };
       this.isEditing = true;
@@ -77,7 +98,8 @@ import { FormGalleryModule } from "../form-gallery/form-gallery.component";
     FormPhotoModule,
     DxValidatorModule,
     CommonModule,
-    FormGalleryModule
+    FormGalleryModule, 
+    SharedModule
 ],
     providers: [],
     exports: [JednostkaFormComponent],

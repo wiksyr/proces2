@@ -1,12 +1,35 @@
-<div>
-    <h2>Skanuje ... </h2>
-    <div *ngIf="barcodeResult">
-      <h3>Scanned Barcode Result: {{ barcodeResult }}</h3>
-    </div>
-    <zxing-scanner 
-      [formats]="formatsEnabled" 
-      (scanSuccess)="handleScanSuccess($event)"
-      (scanError)="handleScanError($event)"
-    ></zxing-scanner>
+<div *ngIf="hasDevices">
+  <video id="video" width="100%" height="auto" style="border: 1px solid #000;"></video>
+  <div *ngIf="scannedValue">
+    <p><strong>Zeskanowano:</strong> {{ scannedValue }}</p>
   </div>
+  <!-- <div *ngIf="videoInputDevices.length > 1">
+    <label for="deviceSelector">Select Camera:</label>
+    <select id="deviceSelector" [(ngModel)]="selectedDeviceId" (change)="startScanner()">
+      <option *ngFor="let device of videoInputDevices" [value]="device.deviceId">
+        {{ device.label || device.deviceId }}
+      </option>
+    </select>
+  </div>
+  <button (click)="startScanner()">Start Scanning</button>
+  <button (click)="stopScanner()">Stop Scanning</button>
+  <br/><br/> -->
   
+  <div *ngIf="videoInputDevices.length > 0">
+    <dx-select-box
+    [(value)]="selectedDeviceId"
+    [items]="videoInputDevices"
+    displayExpr="label"
+    valueExpr="deviceId"
+    placeholder="Wybierz skanner:"
+    [title]="'Wybierz skanner:'"
+    (onItemClick)="startScanner()">
+  </dx-select-box>
+  </div>
+  <!-- <dx-button icon="save" [text]="'Skanuj'" (onClick)="startScanner()"></dx-button> -->
+  <!-- <dx-button icon="remove" [text]="'Wstrzymaj'" (onClick)="stopScanner()"></dx-button> -->
+</div>
+
+<div *ngIf="!hasDevices">
+  <p>No video devices found. Please check your camera permissions.</p>
+</div>

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { BarcodeFormat } from '@zxing/library';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { BrowserMultiFormatReader } from '@zxing/library';
 
 @Component({
   selector: 'app-czytnik-kodow',
@@ -7,27 +7,98 @@ import { BarcodeFormat } from '@zxing/library';
   styleUrl: './czytnik-kodow.component.css',
   standalone: false
 })
-export class CzytnikKodowComponent {
-  barcodeResult: string | null = null;
-  
-  formatsEnabled: BarcodeFormat[] = [
-    BarcodeFormat.CODE_128,
-    BarcodeFormat.DATA_MATRIX,
-    BarcodeFormat.EAN_13,
-    BarcodeFormat.QR_CODE,
-    BarcodeFormat.UPC_A, 
-    BarcodeFormat.UPC_E, 
-    BarcodeFormat.UPC_EAN_EXTENSION
-  ];
+export class CzytnikKodowComponent implements OnInit, OnDestroy {
+  private codeReader: BrowserMultiFormatReader;
+  public hasDevices = false;
+  public videoInputDevices: MediaDeviceInfo[] = [];
+  public selectedDeviceId: string|any;
+  @Output() scanResult: EventEmitter<string> = new EventEmitter<string>();
+  public scannedValue: string|any; 
+  public videoDevices: MediaDeviceInfo[] = [];
+  public videoStream: MediaStream | null = null;
 
-  // This method is triggered when a barcode is successfully scanned
-  handleScanSuccess(result: string) {
-    this.barcodeResult = result;
-    console.log('Scanned barcode:', result);
+  constructor() {
+    this.codeReader = new BrowserMultiFormatReader();
   }
 
-  // This method is triggered if an error occurs during the scan
-  handleScanError(error: any) {
-    console.error('Scan error:', error);
+  ngOnInit() {
+
+    this.codeReader
+      .listVideoInputDevices()
+      .then((videoInputDevices: MediaDeviceInfo[]) => {
+        this.hasDevices = videoInputDevices.length > 0;
+        this.videoInputDevices = videoInputDevices;
+        this.selectedDeviceId = videoInputDevices[0]?.deviceId;
+        if(this.videoInputDevices.length > 1) { 
+          this.selectedDeviceId = videoInputDevices[1]?.deviceId;
+        }
+
+        this.startScanner(); 
+      })
+      .catch((err) => {
+        console.error('Error listing video input devices:', err);
+      });
+  }
+
+  startScanner(): void {
+    
+    this.stopScanner(); 
+    this.requestCameraAccess(); 
+    if (this.selectedDeviceId) {
+      this.codeReader
+        .decodeFromVideoDevice(this.selectedDeviceId, 'video', (result, error) => {
+          if (result) {
+            this.scanResult.emit(result.getText());
+            this.scannedValue = result.getText(); 
+            this.stopScanner(); 
+          }
+          if (error) {
+            //console.error('Error scanning:', error);
+          }
+        })
+        .catch((err) => {
+          console.error('Error starting scanner:', err);
+        });
+    }
+  }
+
+  stopScanner(): void{
+    this.codeReader.reset();
+    this.stopCamera(); 
+  }
+
+  ngOnDestroy(): void {
+    this.stopScanner(); 
+  }
+
+  requestCameraAccess() { 
+    if (this.selectedDeviceId) {
+      const constraints = {
+        video: { 
+          deviceId: { exact: this.selectedDeviceId } 
+        }
+      };
+    
+      
+    navigator.mediaDevices.getUserMedia(constraints)
+    .then(stream => {
+      this.videoStream = stream;
+      const videoElement = document.querySelector('video');
+      if (videoElement) {
+        videoElement.srcObject = stream;
+      }
+    })
+    .catch(err => {
+      console.error('Error accessing camera:', err);
+    });
+   }
+  }
+  
+  stopCamera(): void {
+    if (this.videoStream) {
+      // Stop each track (audio/video) in the media stream
+      this.videoStream.getTracks().forEach(track => track.stop());
+      this.videoStream = null;  // Clear the media stream
+    }
   }
 }

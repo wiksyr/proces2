@@ -36,5 +36,10 @@ export const navigation = [
     text: 'Czytnik Kodow',
     path: '/pages/czytnik-kodow',
     icon: 'filter'
+  },
+  {
+    text: 'Kamera',
+    path: '/pages/jednostka-camera-capture',
+    icon: 'isnotblank'
   }
 ];

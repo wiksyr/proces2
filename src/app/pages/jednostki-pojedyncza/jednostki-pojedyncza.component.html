@@ -1,3 +1,5 @@
+<app-czytnik-kodow-modal *ngIf="isModalOpen"></app-czytnik-kodow-modal>
+
 <dx-scroll-view class="view-wrapper-scroll">
     <div class="view-wrapper">
       <dx-toolbar class="toolbar-details theme-dependent">
@@ -12,6 +14,14 @@
                 [options]="{ icon: 'search', elementAttr: { class: 'form-editor-icon' }, stylingMode: 'text' }"
               ></dxi-button>
             </dx-text-box>
+        </dxi-item>
+        <dxi-item location="before" locateInMenu="auto">
+          <dx-button
+          text="Skanuj"
+          (onClick)="openModal()"
+          type="default"
+          stylingMode="contained">
+          </dx-button>
         </dxi-item>
         <dxi-item location="before" [text]="jednostkaName"></dxi-item>
         <dxi-item location="after" locateInMenu="auto">
@@ -57,7 +67,7 @@
           }"
         ></dxi-item>
       </dx-toolbar>
-  
+      
       <div class="panels theme-dependent">
         <div class="left">
           <jednostka-form

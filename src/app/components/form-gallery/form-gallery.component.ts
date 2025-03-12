@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
-  Component, ElementRef, Input, NgModule, OnInit,
+  Component, ElementRef, Input, NgModule, OnChanges, OnInit,
+  SimpleChanges,
 } from '@angular/core';
 import { DxFileUploaderModule } from 'devextreme-angular/ui/file-uploader';
 import { FormPhotoModule } from '../form-photo/form-photo.component';
@@ -33,7 +34,6 @@ export class FormGalleryComponent implements OnInit {
   }
 
   loadPhoto() { 
-    console.log(this.links[this.currentPhoto]); 
     this.link = this.links[this.currentPhoto];// `url('data:image/png;base64,${this.link}')`;
     console.log(this.link); 
   }

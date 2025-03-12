@@ -1,3 +1,6 @@
+
+<app-camera-capture-modal *ngIf="isModalOpen"></app-camera-capture-modal>
+      
 <div id="jednostka-form">
     <dx-validation-group>
       <!-- <toolbar-form
@@ -16,13 +19,13 @@
         labelMode="floating"
         [class.view-mode]="!isEditing"
       >
-      
-      
+
         <dxi-item itemType="group" [colCount]="2">
           <dxo-col-count-by-screen [xs]="2"></dxo-col-count-by-screen>
           <dxi-item>
             <div *dxTemplate>
               <form-gallery [links]="links" [size]="184"></form-gallery>
+              <dx-button icon="isnotblank" [text]="'Aparat'" (onClick)="openModal()"></dx-button>
             </div>
           </dxi-item>
 

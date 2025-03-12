@@ -1,0 +1,14 @@
+<div class="camera-container">
+    <video #video width="100%" height="auto" autoplay></video>
+    <canvas #canvas style="display: none;"></canvas>
+    
+    <div class="controls">
+      <dx-button icon="save" (onClick)="captureImage()">Capture</dx-button>
+      <dx-button icon="file" *ngIf="capturedImage" (onClick)="saveImage()">Save Image</dx-button>
+    </div>
+    
+    <div *ngIf="capturedImage">
+      <h3>Captured Image</h3>
+      <img [src]="capturedImage" alt="Captured Image" width="300">
+    </div>
+  </div>
