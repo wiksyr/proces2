@@ -21,6 +21,8 @@ export class JednostkiTabletComponent implements OnInit {
   isFiltered: boolean = false; 
   pageSize: number = 100; 
   pageNumber: number = 0; 
+  startDate: Date|any; 
+  endDate: Date|any; 
 
   constructor(private apiService: JednostkiApiService, private route: ActivatedRoute) { 
     loadMessages(deMessages);
@@ -84,6 +86,46 @@ export class JednostkiTabletComponent implements OnInit {
 
   async ngOnInit() {
     this.snapshotData = this.route.snapshot.data['data']; 
+    this.data = this.snapshotData.slice(0,100); 
+    this.isLoading = false; 
+  }
+
+  onDateStartChange(e: any) {
+    if(this.getMonthDifference(this.startDate, this.endDate) > 2)
+    {
+      const start = new Date(this.endDate.getFullYear(), this.endDate.getMonth() -2, 1); 
+      this.startDate = start; 
+    }
+  }
+
+  onDateEndChange(e: any) {
+    if(this.getMonthDifference(this.startDate, this.endDate) > 2)
+    {
+      const end = new Date(this.startDate.getFullYear(), this.startDate.getMonth() +3, 1); 
+      this.endDate = end; 
+    }
+  }
+
+  getMonthDifference(startDate: Date, endDate: Date): number {
+    // Calculate the year difference
+    let yearsDiff = endDate.getFullYear() - startDate.getFullYear();
+    
+    // Calculate the month difference
+    let monthsDiff = endDate.getMonth() - startDate.getMonth();
+  
+    // If the month difference is negative, subtract one year and adjust the month difference
+    if (monthsDiff < 0) {
+      yearsDiff--;
+      monthsDiff += 12;
+    }
+  
+    // Return total difference in months
+    return yearsDiff * 12 + monthsDiff;
+  }
+
+  getData = async() => { 
+    this.isLoading = true; 
+    this.snapshotData = await this.apiService.getSkroconaByDate(this.startDate, this.endDate, 20000, 1); 
     this.data = this.snapshotData.slice(0,100); 
     this.isLoading = false; 
   }

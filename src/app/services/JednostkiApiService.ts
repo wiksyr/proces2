@@ -22,6 +22,17 @@ export class JednostkiApiService {
     const arrayBuffer = await response.arrayBuffer();
     return this.msgPack.deserializeJednostkaSkroconaArray(arrayBuffer); 
   }
+  
+  async getSkroconaByDate(start: Date, end: Date, pageSize: number, pageNumber: number): Promise<JednostkaSkrocona[]> {
+    const headers = new HttpHeaders({
+      'Accept': 'application/x-msgpack'
+    });
+    const response = await fetch(`${config.apiUrl}/api/Jednostka/skrocona/byDateStrony?start=${start.toLocaleDateString('en-CA')}&end=${end.toLocaleDateString('en-CA')}&pageSize=${pageSize}&pageNumber=${pageNumber}`, {
+      headers: { 'Accept': 'application/x-msgpack' }
+    }); 
+    const arrayBuffer = await response.arrayBuffer();
+    return this.msgPack.deserializeJednostkaSkroconaArray(arrayBuffer); 
+  }
     
   async getSkroconaById(id: string): Promise<JednostkaSkrocona> {
     const headers = new HttpHeaders({

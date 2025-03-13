@@ -1,11 +1,44 @@
-
+<div class="content-block">
+    <b>Pobierz dane z zakresu:</b>
+    <dx-toolbar class="toolbar-details theme-dependent">
+        <!-- <dxi-item location="before">
+        <dx-button icon="search" stylingMode="text"></dx-button>
+        </dxi-item> -->
+        <dxi-item  location="before">
+            <dx-date-box
+            [(value)]="startDate"
+            type="date"
+            displayFormat="yyyy-MM-dd"
+            placeholder="Data od:"
+            min="2020-01-01"
+            max="2025-12-31"
+            [showClearButton]="true"
+            (onValueChanged)="onDateStartChange($event)"
+            ></dx-date-box>  
+            <dx-date-box
+            [(value)]="endDate"
+            type="date"
+            displayFormat="yyyy-MM-dd"
+            placeholder="Data do:"
+            min="2020-01-01"
+            max="2025-12-31"
+            [showClearButton]="true"
+            (onValueChanged)="onDateEndChange($event)"
+            ></dx-date-box>
+        </dxi-item>
+        <dxi-item location="before">
+            <dx-button [text]="'Pobierz'" icon="download" (onClick)="getData()"></dx-button>
+        </dxi-item>
+    </dx-toolbar>
+    <br/>
+</div>
+<br/>
 
 <dx-toolbar class="toolbar-details theme-dependent">
     <!-- <dxi-item location="before">
       <dx-button icon="search" stylingMode="text"></dx-button>
     </dxi-item> -->
     <dxi-item location="before">
-
         <dx-text-box [placeholder]="'Szukaj...'" [width]="'150'" [(value)]="search">
             <dxi-button
             name="icon"
