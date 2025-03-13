@@ -1,4 +1,8 @@
 <div *ngIf="hasDevices">
+  
+  <!-- <zxing-scanner [torch]="torchEnabled" [(device)]="currentDevice" (scanSuccess)="onCodeResult($event)"
+    [formats]="formatsEnabled" [tryHarder]="tryHarder" (permissionResponse)="onHasPermission($event)"
+    (camerasFound)="onCamerasFound($event)" (torchCompatible)="onTorchCompatible($event)"></zxing-scanner> -->
   <video id="video" width="100%" height="auto" style="border: 1px solid #000;"></video>
   <div *ngIf="scannedValue">
     <p><strong>Zeskanowano:</strong> {{ scannedValue }}</p>
@@ -15,7 +19,7 @@
   <button (click)="stopScanner()">Stop Scanning</button>
   <br/><br/> -->
   
-  <div *ngIf="videoInputDevices.length > 0">
+  <!-- <div *ngIf="videoInputDevices.length > 0">
     <dx-select-box
     [(value)]="selectedDeviceId"
     [items]="videoInputDevices"
@@ -24,8 +28,8 @@
     placeholder="Wybierz skanner:"
     [title]="'Wybierz skanner:'"
     (onItemClick)="startScanner()">
-  </dx-select-box>
-  </div>
+  </dx-select-box> -->
+  <!-- </div> -->
   <!-- <dx-button icon="save" [text]="'Skanuj'" (onClick)="startScanner()"></dx-button> -->
   <!-- <dx-button icon="remove" [text]="'Wstrzymaj'" (onClick)="stopScanner()"></dx-button> -->
 </div>

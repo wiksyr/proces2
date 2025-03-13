@@ -7,20 +7,6 @@ import {
   DxDropDownButtonModule,
   DxScrollViewModule,
 } from 'devextreme-angular';
-// import {
-//   CardActivitiesModule,
-//   CardNotesModule,
-//   CardMessagesModule,
-// } from 'src/app/components';
-// import { DataService } from 'src/app/services';
-// import { forkJoin, map } from 'rxjs';
-// import { Contact } from 'src/app/types/contact';
-// import { Messages } from 'src/app/types/messages';
-// import { Notes } from 'src/app/types/notes';
-// import { Opportunities } from 'src/app/types/opportunities';
-// import { ContactFormModule } from 'src/app/components/library/contact-form/contact-form.component';
-// import { ContactCardsModule } from 'src/app/components/utils/contact-cards/contact-cards.component';
-// import { DxToolbarModule } from 'devextreme-angular/ui/toolbar';
 import { JednostkiApiService } from '../../services/JednostkiApiService';
 import { Jednostka } from '../../models/Jednostka';
 import { CzytnikKodowModalService } from '../../services/czytnikKodowModalService';
@@ -38,13 +24,7 @@ export class JednostkiPojedynczaComponent implements OnInit {
 
   isModalOpen: boolean = false;
 
-  //contactNotes: Notes;
-
-  //contactMessages: Messages;
-
-  //activeOpportunities: Opportunities;
-
-  //closedOpportunities: Opportunities;
+  error: string|any; 
 
   jednostkaName = '...';
 
@@ -59,6 +39,7 @@ export class JednostkiPojedynczaComponent implements OnInit {
     this.czytnikService.modalData$.subscribe((data) => {
       this.jednostkaId = data; // Capture the data passed from the modal
       this.isModalOpen = false; // Close the modal
+      this.search(); 
     });
   }
 
@@ -67,39 +48,20 @@ export class JednostkiPojedynczaComponent implements OnInit {
   }
 
   loadData = async () => {
-    // forkJoin([
-    //   this.service.getById(this.jednostkaId.toString()),
-    //   this.service.getContactMessages(this.contactId),
-    //   this.service.getActiveContactOpportunities(this.contactId),
-    //   this.service.getClosedContactOpportunities(this.contactId),
-    // ]).pipe(
-    //   map(
-    //     ([
-    //       contactNotes,
-    //       contactMessages,
-    //       activeOpportunities,
-    //       closedOpportunities
-    //     ]) => ({
-    //       contactNotes,
-    //       contactMessages,
-    //       activeOpportunities,
-    //       closedOpportunities
-    //     }))
-    //   ).subscribe(
-    //     (data) => Object.keys(data).forEach((key) => this[key] = data[key])
-    // );
 
     try
     {
-      this.service.getById(this.jednostkaId.toString()).then((data) => {
+      await this.service.getById(this.jednostkaId.toString()).then((data) => {
         this.jednostkaName = "";
         this.jednostkaData = data;
         this.isLoading = false;
+        this.error = null; 
       })
     }
     catch
     {
       this.jednostkaName = "Podaj Id jednostki"
+      this.error = "Nie znaleziono jednostki.";
       this.isLoading = false;
     }
   };

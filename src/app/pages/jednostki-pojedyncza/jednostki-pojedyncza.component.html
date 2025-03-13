@@ -1,5 +1,7 @@
 <app-czytnik-kodow-modal *ngIf="isModalOpen"></app-czytnik-kodow-modal>
 
+<div *ngIf="error">{{error}}</div>
+
 <dx-scroll-view class="view-wrapper-scroll">
     <div class="view-wrapper">
       <dx-toolbar class="toolbar-details theme-dependent">

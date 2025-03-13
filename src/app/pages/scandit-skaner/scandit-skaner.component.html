@@ -1,0 +1,16 @@
+<div class="scanner-container">
+    <h2>Scan Barcode</h2>
+  
+    <!-- Container for the Scandit Barcode Scanner -->
+    <div id="scanner-container" style="width: 100%; height: 400px;"></div>
+  
+    <!-- Display the scanned barcode result -->
+    <div *ngIf="scannedBarcode">
+      <h3>Scanned Barcode: {{ scannedBarcode }}</h3>
+    </div>
+  
+    <!-- Stop scanning button -->
+    <div class="scanner-actions">
+      <button (click)="stopScanning()">Stop Scanning</button>
+    </div>
+  </div>

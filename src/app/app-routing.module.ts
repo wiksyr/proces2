@@ -28,8 +28,14 @@ import { CzytnikKodowModalComponent } from './pages/czytnik-kodow-modal/czytnik-
 import { JednostkaCameraCaptureComponent } from './pages/jednostka-camera-capture/jednostka-camera-capture.component';
 import { CameraCaptureModalComponent } from './pages/camera-capture-modal/camera-capture-modal.component';
 import { SharedModule } from './app-shared.module';
+import { ScanditSkanerComponent } from './pages/scandit-skaner/scandit-skaner.component';
 
 const routes: Routes = [
+  {
+    path: 'pages/scandit-skaner',
+    component: ScanditSkanerComponent,
+    canActivate: [ AuthGuardService ]
+  },
   {
     path: 'pages/camera-capture-modal',
     component: CameraCaptureModalComponent,
@@ -158,7 +164,8 @@ const routes: Routes = [
     JednostkiPojedynczaComponent,
     JednostkiTabletComponent,
     JednostkiResponsiveComponent,
-    CzytnikKodowModalComponent
+    CzytnikKodowModalComponent,
+    ScanditSkanerComponent
   ]
 })
 export class AppRoutingModule { }

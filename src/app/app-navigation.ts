@@ -41,5 +41,10 @@ export const navigation = [
     text: 'Kamera',
     path: '/pages/jednostka-camera-capture',
     icon: 'isnotblank'
+  },
+  {
+    text: 'Scandit Skaner',
+    path: '/pages/scandit-skaner',
+    icon: 'folder'
   }
 ];

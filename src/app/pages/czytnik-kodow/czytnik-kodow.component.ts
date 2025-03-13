@@ -1,5 +1,7 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { BrowserMultiFormatReader } from '@zxing/library';
+import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { BarcodeFormat, BrowserMultiFormatReader, DecodeHintType } from '@zxing/library';
+import { BehaviorSubject } from 'rxjs';
+import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 
 @Component({
   selector: 'app-czytnik-kodow',
@@ -16,9 +18,31 @@ export class CzytnikKodowComponent implements OnInit, OnDestroy {
   public scannedValue: string|any; 
   public videoDevices: MediaDeviceInfo[] = [];
   public videoStream: MediaStream | null = null;
+ 
+  availableDevices: MediaDeviceInfo[]|any;
+  currentDevice: MediaDeviceInfo|any = null;
+
+  formatsEnabled: BarcodeFormat[] = [
+    BarcodeFormat.CODE_128,
+    BarcodeFormat.DATA_MATRIX,
+    BarcodeFormat.EAN_13,
+    BarcodeFormat.QR_CODE,
+  ];
+
+  hasPermission: boolean|any;
+
+  qrResultString: string|any;
+
+  torchEnabled = true;
+  torchAvailable$ = new BehaviorSubject<boolean>(false);
+  tryHarder = true;
+
 
   constructor() {
-    this.codeReader = new BrowserMultiFormatReader();
+    const hints = new Map();
+    hints.set(DecodeHintType.TRY_HARDER, true); // Set the tryHarder option
+
+    this.codeReader = new BrowserMultiFormatReader(hints);
   }
 
   ngOnInit() {
@@ -64,7 +88,6 @@ export class CzytnikKodowComponent implements OnInit, OnDestroy {
 
   stopScanner(): void{
     this.codeReader.reset();
-    this.stopCamera(); 
   }
 
   ngOnDestroy(): void {
@@ -100,5 +123,32 @@ export class CzytnikKodowComponent implements OnInit, OnDestroy {
       this.videoStream.getTracks().forEach(track => track.stop());
       this.videoStream = null;  // Clear the media stream
     }
+  }
+
+  
+  clearResult(): void {
+    this.qrResultString = null;
+  }
+
+  onCamerasFound(devices: MediaDeviceInfo[]): void {
+    this.availableDevices = devices;
+    this.hasDevices = Boolean(devices && devices.length);
+  }
+
+  onCodeResult(resultString: string) {
+    this.scanResult.emit(resultString);
+    this.scannedValue = resultString; 
+  }
+
+  onHasPermission(has: boolean) {
+    this.hasPermission = has;
+  }
+
+  onTorchCompatible(isCompatible: boolean): void {
+    this.torchAvailable$.next(isCompatible || false);
+  }
+
+  toggleTryHarder(): void {
+    this.tryHarder = !this.tryHarder;
   }
 }
