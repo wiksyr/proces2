@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 
 import {
   configure,
@@ -25,6 +25,7 @@ export class ScanditSkanerComponent implements OnInit, OnDestroy {
   scannedBarcode: string = '';
   barcodeCapture: BarcodeCapture|any; 
   scanner: any;
+  @Output() scanResult: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
 
@@ -74,6 +75,7 @@ export class ScanditSkanerComponent implements OnInit, OnDestroy {
           didScan: (barcodeCapture:any, session:any) => {
             const recognizedBarcodes = session.newlyRecognizedBarcode;
             this.scannedBarcode = recognizedBarcodes._data;
+            this.scanResult.emit(this.scannedBarcode); 
             console.log(recognizedBarcodes); 
             // Do something with the barcodes
           },
