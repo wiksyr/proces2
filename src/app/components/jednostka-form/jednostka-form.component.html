@@ -3,14 +3,14 @@
       
 <div id="jednostka-form">
     <dx-validation-group>
-      <!-- <toolbar-form
+      <toolbar-form
         [isEditing]="isEditing"
         titleClass="dx-form-group-caption"
         (editingCancelled)="handleCancelClick()"
         (editModeToggled)="handleEditClick()"
         (saveButtonClicked)="handleSaveClick($event)"
       >
-      </toolbar-form> -->
+      </toolbar-form>
       
       <dx-form
         *ngIf="jednostkaData"
@@ -110,6 +110,7 @@
                 label="Numer zbiorczy:"
                 [(value)]="jednostkaData.numerZbiorczy"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
             
@@ -119,6 +120,7 @@
                 label="Proces sterylizacji:"
                 [(value)]="jednostkaData.procesSterId"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -128,6 +130,7 @@
                 label="Proces dezynfekcji wstępnej:"
                 [(value)]="jednostkaData.procesDezWstId"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -137,6 +140,7 @@
                 label="Zakończona:"
                 [(value)]="jednostkaData.zakonczona"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -146,6 +150,7 @@
                 label="Cito:"
                 [(value)]="jednostkaData.cito"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -155,6 +160,7 @@
                 label="Zdarzenie:"
                 [(value)]="jednostkaData.zdarzenieId"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -174,6 +180,7 @@
                 label="Wydanie Id:"
                 [(value)]="jednostkaData.wydanieId"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -183,6 +190,7 @@
                 label="Wersja naklejki:"
                 [(value)]="jednostkaData.wersjaNaklejki"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -192,6 +200,7 @@
                 label="Koszt:"
                 [(value)]="jednostkaData.koszt"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -201,6 +210,7 @@
                 label="Koszt rzeczwisty:"
                 [(value)]="jednostkaData.kosztRzeczywisty"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -210,6 +220,7 @@
                 label="Zrodło ceny jednostki:"
                 [(value)]="jednostkaData.zrodloCenyJednostki"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -219,6 +230,7 @@
                 label="Termin ważności:"
                 [(value)]="jednostkaData.terminWaznosci"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -228,6 +240,7 @@
                 label="Termin ważności (dni):"
                 [(value)]="jednostkaData.terminWaznosciDni"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
 
@@ -237,6 +250,7 @@
                 label="Anulowana:"
                 [(value)]="jednostkaData.anulowana"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -256,6 +270,7 @@
                 label="Anulował:"
                 [(value)]="jednostkaData.anulowal"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -265,6 +280,7 @@
                 label="Tagi zmiany:"
                 [(value)]="jednostkaData.tagiZmiany"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -274,6 +290,7 @@
                 label="Zweryfikowana przy przyjmowaniu:"
                 [(value)]="jednostkaData.zweryfikowanaPrzyPrzyjmowaniu"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -283,6 +300,7 @@
                 label="Zweryfikowana przy pakowaniu:"
                 [(value)]="jednostkaData.zweryfikowanaPrzyPakowaniu"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -292,6 +310,7 @@
                 label="Zrealizowane jednostki Id:"
                 [(value)]="jednostkaData.zrealizowaneJednostkiId"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -311,6 +330,7 @@
                 label="Wydanie na strefie Id:"
                 [(value)]="jednostkaData.wydanieNaStrefieID"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -320,6 +340,7 @@
                 label="Znaczniki:"
                 [(value)]="jednostkaData.znaczniki"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -329,6 +350,7 @@
                 label="Liczba użyć:"
                 [(value)]="jednostkaData.liczbaUzyc"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -338,6 +360,7 @@
                 label="Data zapakowania:"
                 [(value)]="jednostkaData.dataZapakowania"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -347,6 +370,7 @@
                 label="Zapakował:"
                 [(value)]="jednostkaData.zapakowalId"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -356,6 +380,7 @@
                 label="Wydanie przez klienta Id:"
                 [(value)]="jednostkaData.wydaniePrzezKlientaId"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -365,6 +390,7 @@
                 label="Przyjęcie przez klienta Id:"
                 [(value)]="jednostkaData.przyjeciePrzezKlientaId"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -374,6 +400,7 @@
                 label="Etykieta zbiorcza:"
                 [(value)]="jednostkaData.etykietaZbiorczaId"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -383,6 +410,7 @@
                 label="Proces:"
                 [(value)]="jednostkaData.procesId"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -392,6 +420,7 @@
                 label="Reklamacja:"
                 [(value)]="jednostkaData.reklamacjaId"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -401,6 +430,7 @@
                 label="Są uwagi"
                 [(value)]="jednostkaData.saUwagi"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     
@@ -410,6 +440,7 @@
                 label="Są komentarze:"
                 [(value)]="jednostkaData.saKomentarze"
                 [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
     

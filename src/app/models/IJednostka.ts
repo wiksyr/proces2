@@ -30,6 +30,7 @@ export interface IJednostka {
     historiaJednostkiId: string;
     wydanieNaStrefieID: string;
     znaczniki: string;
+    nrObiegu: string, 
     liczbaUzyc: string;
     dataZapakowania: string;
     zapakowalId: string;

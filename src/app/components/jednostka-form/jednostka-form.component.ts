@@ -25,6 +25,8 @@ import { FormGalleryModule } from "../form-gallery/form-gallery.component";
 import { CameraCaptureModalService } from '../../services/cameraCaptureModalService';
 import { AppRoutingModule } from '../../app-routing.module';
 import { SharedModule } from '../../app-shared.module';
+import { ToolbarFormModule } from '../toolbar-form/toolbar-form.component';
+import { JednostkiApiService } from '../../services/JednostkiApiService';
 //   import { ToolbarFormModule } from 'src/app/components/utils/toolbar-form/toolbar-form.component';
   
   @Component({
@@ -50,8 +52,10 @@ import { SharedModule } from '../../app-shared.module';
     ]
   
     zipCodeValidator: ValidationRule = { type: 'pattern', pattern: /^\d{5}$/, message: 'Zip is invalid' };
+
+    disabledValidationValidationRule = []; 
   
-    constructor(private cameraService: CameraCaptureModalService) { 
+    constructor(private cameraService: CameraCaptureModalService, private apiService: JednostkiApiService) { 
 
     }
 
@@ -71,8 +75,9 @@ import { SharedModule } from '../../app-shared.module';
       this.isEditing = true;
     }
   
-    handleSaveClick({ validationGroup }: DxButtonTypes.ClickEvent) {
+    handleSaveClick = async({ validationGroup }: DxButtonTypes.ClickEvent) => {
       if(!validationGroup.validate().isValid) return;
+      await this.apiService.updateJednosta(this.jednostkaData); 
       this.isEditing = false;
       this.savedData = null;
     }
@@ -99,7 +104,8 @@ import { SharedModule } from '../../app-shared.module';
     DxValidatorModule,
     CommonModule,
     FormGalleryModule, 
-    SharedModule
+    SharedModule, 
+    ToolbarFormModule
 ],
     providers: [],
     exports: [JednostkaFormComponent],

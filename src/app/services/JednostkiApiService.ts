@@ -81,4 +81,37 @@ export class JednostkiApiService {
     return this.msgPack.deserializeJednostkaArray(arrayBuffer); 
   }
 
+  async updateJednosta(jednostka: Jednostka) {
+    // Data to send in POST request
+
+    // Serialize the data to MessagePack format
+    const serializedData = this.msgPack.serialize(jednostka);
+
+    console.log(serializedData); 
+
+    try {
+      // Make the POST request using fetch API
+      const response = await fetch(`${config.apiUrl}/api/Jednostka`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/octet-stream', // MessagePack content type
+          'Accept': 'application/x-msgpack' 
+        },
+        body: serializedData, // Attach the serialized MessagePack data
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      // Get the response and deserialize it (assuming it’s also MessagePack)
+      const responseData = await response.arrayBuffer();
+      const deserializedData = this.msgPack.deserialize(responseData);
+
+      console.log('Response Data:', deserializedData);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
 }

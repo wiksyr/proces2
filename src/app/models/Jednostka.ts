@@ -32,6 +32,7 @@ export class Jednostka implements IJednostka {
     historiaJednostkiId: string;
     wydanieNaStrefieID: string;
     znaczniki: string;
+    nrObiegu: string; 
     liczbaUzyc: string;
     dataZapakowania: string;
     zapakowalId: string;
@@ -76,6 +77,7 @@ export class Jednostka implements IJednostka {
         historiaJednostkiId: string,
         wydanieNaStrefieID: string,
         znaczniki: string,
+        nrObiegu: string, 
         liczbaUzyc: string,
         dataZapakowania: string,
         zapakowalId: string,
@@ -120,6 +122,7 @@ export class Jednostka implements IJednostka {
         this.historiaJednostkiId = historiaJednostkiId; 
         this.wydanieNaStrefieID = wydanieNaStrefieID; 
         this.znaczniki = znaczniki; 
+        this.nrObiegu = nrObiegu;
         this.liczbaUzyc = liczbaUzyc; 
         this.dataZapakowania = dataZapakowania; 
         this.zapakowalId = zapakowalId; 
@@ -163,7 +166,7 @@ export class Jednostka implements IJednostka {
           json[25], 
           json[26], 
           json[27], 
-          json[28], 
+          json[28],
           json[29], 
           json[30], 
           json[31], 
@@ -176,7 +179,8 @@ export class Jednostka implements IJednostka {
           json[38], 
           json[39], 
           json[40], 
-          json[41]
+          json[41], 
+          json[42]
           );
         }
 }
