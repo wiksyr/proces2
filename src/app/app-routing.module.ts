@@ -29,6 +29,7 @@ import { JednostkaCameraCaptureComponent } from './pages/jednostka-camera-captur
 import { CameraCaptureModalComponent } from './pages/camera-capture-modal/camera-capture-modal.component';
 import { SharedModule } from './app-shared.module';
 import { ScanditSkanerComponent } from './pages/scandit-skaner/scandit-skaner.component';
+import { FormSearchboxModule } from './components/form-searchbox/form-searchbox.component';
 
 const routes: Routes = [
   {
@@ -150,7 +151,8 @@ const routes: Routes = [
     ZXingScannerModule, 
     FormsModule, 
     DxSelectBoxModule, 
-    SharedModule
+    SharedModule, 
+    FormSearchboxModule
     ], 
   providers: [AuthGuardService],
   exports: [RouterModule],

@@ -81,7 +81,7 @@ export class JednostkiApiService {
     return this.msgPack.deserializeJednostkaArray(arrayBuffer); 
   }
 
-  async updateJednosta(jednostka: Jednostka) {
+  async updateJednosta(jednostka: Jednostka): Promise<boolean> {
     // Data to send in POST request
 
     // Serialize the data to MessagePack format
@@ -108,9 +108,10 @@ export class JednostkiApiService {
       const responseData = await response.arrayBuffer();
       const deserializedData = this.msgPack.deserialize(responseData);
 
-      console.log('Response Data:', deserializedData);
+      return deserializedData; 
     } catch (error) {
       console.error('Error:', error);
+      return false;
     }
   }
 

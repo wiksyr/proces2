@@ -1,11 +1,15 @@
 
 <app-camera-capture-modal *ngIf="isModalOpen"></app-camera-capture-modal>
-      
+
+<div *ngIf="error">
+    {{error}}
+</div>
+
 <div id="jednostka-form">
     <dx-validation-group>
       <toolbar-form
+        *ngIf="jednostkaData"
         [isEditing]="isEditing"
-        titleClass="dx-form-group-caption"
         (editingCancelled)="handleCancelClick()"
         (editModeToggled)="handleEditClick()"
         (saveButtonClicked)="handleSaveClick($event)"
@@ -59,7 +63,19 @@
               [isEditing]="isEditing"
             ></form-textbox>
           </dxi-item>
-  
+
+          <dxi-item [colSpan]="2">
+            <form-searchbox
+              *dxTemplate
+              label="Produkt:"
+              [(value)]="jednostkaData.jednostkaId"
+              [items]="productBoxItems"
+              [isEditing]="isEditing"
+              (keyDowned)="produktTyping($event)"
+              (valueChange)="produktWybrany($event)"
+            ></form-searchbox>
+          </dxi-item>
+
           <dxi-item cssClass="accent">
             <form-textbox
               *dxTemplate

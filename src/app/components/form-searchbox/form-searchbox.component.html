@@ -1,0 +1,21 @@
+<dx-select-box
+    [label]="label"
+    [(value)]="value"
+    [dataSource]="items"
+    displayExpr="name"
+    valueExpr="id"
+    placeholder="Wybierz"
+    [showClearButton]="true"
+    [readOnly]="!isEditing"
+    [searchEnabled]="true"
+    (onValueChanged)="valueChanged($event)"
+    (onInput)="onSearch($event)"
+>
+    <dx-validator [validationRules]="validators"></dx-validator>
+    <dxi-button
+      *ngIf="icon"
+      name="icon"
+      location="before"
+      [options]="{ icon: icon, elementAttr: { class: 'form-editor-icon' }, stylingMode: 'text' }"
+    ></dxi-button>
+</dx-select-box>

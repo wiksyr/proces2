@@ -19,20 +19,20 @@
         </dxi-item>
         <dxi-item location="before" locateInMenu="auto">
           <dx-button
-          text="Skanuj"
-          (onClick)="openModal()"
-          type="default"
-          stylingMode="contained">
-          </dx-button>
-        </dxi-item>
-        <dxi-item location="before" [text]="jednostkaName"></dxi-item>
-        <dxi-item location="after" locateInMenu="auto">
-          <dx-button
             text="Szukaj"
             (onClick)="search()"
             type="default"
             stylingMode="contained"
           ></dx-button>
+        </dxi-item>
+        <dxi-item location="before" [text]="jednostkaName"></dxi-item>
+        <dxi-item location="after" locateInMenu="auto">
+          <dx-button
+          text="Skanuj"
+          (onClick)="openModal()"
+          type="default"
+          stylingMode="contained">
+          </dx-button>
         </dxi-item>
         <dxi-item location="after">
           <dx-drop-down-button
