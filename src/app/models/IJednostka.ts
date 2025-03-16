@@ -42,6 +42,8 @@ export interface IJednostka {
     terminWaznosciDni: number;
     saUwagi: boolean;
     saKomentarze: number;
+    strefaId: number; 
+    produktId: number; 
 }
 
 

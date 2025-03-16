@@ -54,35 +54,29 @@
               ></form-textbox>
             </dxi-item>
           </dxi-item>
-  
-          <dxi-item [colSpan]="2">
-            <form-textbox
-              *dxTemplate
-              label="Produkt:"
-              [(value)]="jednostkaData.produktNazwa"
-              [isEditing]="isEditing"
-            ></form-textbox>
-          </dxi-item>
 
           <dxi-item [colSpan]="2">
             <form-searchbox
               *dxTemplate
               label="Produkt:"
-              [(value)]="jednostkaData.jednostkaId"
-              [items]="productBoxItems"
+              [(value)]="jednostkaData.produktId"
+              [items]="produktBoxItems"
               [isEditing]="isEditing"
               (keyDowned)="produktTyping($event)"
               (valueChange)="produktWybrany($event)"
             ></form-searchbox>
           </dxi-item>
-
-          <dxi-item cssClass="accent">
-            <form-textbox
+          
+          <dxi-item [colSpan]="2">
+            <form-searchbox
               *dxTemplate
               label="Strefa:"
-              [(value)]="jednostkaData.strefaNazwa"
+              [(value)]="jednostkaData.strefaId"
+              [items]="strefaBoxItems"
               [isEditing]="isEditing"
-            ></form-textbox>
+              (keyDowned)="strefaTyping($event)"
+              (valueChange)="strefaWybrany($event)"
+            ></form-searchbox>
           </dxi-item>
   
           <dxi-item [colSpan]="2">

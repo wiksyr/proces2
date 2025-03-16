@@ -44,6 +44,8 @@ export class Jednostka implements IJednostka {
     terminWaznosciDni: number;
     saUwagi: boolean;
     saKomentarze: number;
+    strefaId: number;
+    produktId: number;
 
     constructor(
         jednostkaId: number, 
@@ -88,7 +90,9 @@ export class Jednostka implements IJednostka {
         reklamacjaId: string, 
         terminWaznosciDni: string,
         saUwagi: string,
-        saKomentarze: string
+        saKomentarze: string, 
+        strefaId: string, 
+        produktId: string
     ) 
     {
         this.jednostkaId = jednostkaId;  
@@ -134,6 +138,8 @@ export class Jednostka implements IJednostka {
         this.terminWaznosciDni = Number.parseInt(terminWaznosciDni); 
         this.saUwagi = saUwagi === 'true' || saUwagi === '1'; 
         this.saKomentarze = Number.parseInt(saKomentarze);
+        this.strefaId = Number.parseInt(strefaId); 
+        this.produktId = Number.parseInt(produktId); 
     }
 
     static fromJSON(json: any): Jednostka {
@@ -180,7 +186,9 @@ export class Jednostka implements IJednostka {
           json[39], 
           json[40], 
           json[41], 
-          json[42]
+          json[42], 
+          json[43], 
+          json[44] 
           );
         }
 }

@@ -30,6 +30,12 @@ import { SharedModule } from '../../app-shared.module';
 import { ToolbarFormModule } from '../toolbar-form/toolbar-form.component';
 import { JednostkiApiService } from '../../services/JednostkiApiService';
 import { FormSearchboxModule } from '../form-searchbox/form-searchbox.component';
+import { StrefyApiService } from '../../services/StrefyApiService';
+import { ProduktyApiService } from '../../services/ProduktyApiService';
+import { ProduktSearch } from '../../models/ProduktSearch';
+import { StrefaSearch } from '../../models/StrefaSearch';
+import { SearchBoxItem } from '../../models/SearchBoxItem';
+import Integer from '@zxing/library/esm/core/util/Integer';
 //   import { ToolbarFormModule } from 'src/app/components/utils/toolbar-form/toolbar-form.component';
   
   @Component({
@@ -60,24 +66,33 @@ import { FormSearchboxModule } from '../form-searchbox/form-searchbox.component'
 
     disabledValidationValidationRule = []; 
 
-    productBoxItems: any; 
+    produktBoxItems: SearchBoxItem[] = []; 
+
+    strefaBoxItems: SearchBoxItem[] = []; 
   
-    constructor(private cameraService: CameraCaptureModalService, private apiService: JednostkiApiService) { 
+    constructor(private cameraService: CameraCaptureModalService, 
+      private jednostkiApiService: JednostkiApiService, 
+      private produktyApiService: ProduktyApiService, 
+      private strefyApiService: StrefyApiService ) { 
 
     }
 
-    ngOnInit(): void {
+    ngOnInit = async() => {
       this.cameraService.modalData$.subscribe((data) => {
         this.links.push(data); // Capture the data passed from the modal
         this.isModalOpen = false; // Close the modal
-        this.productBoxItems = [{ name: this.jednostkaData.produktNazwa, id: this.jednostkaData.jednostkaId }] 
+        this.produktBoxItems = [{ name: this.jednostkaData.produktNazwa, id: this.jednostkaData.produktId }] 
+        this.strefaBoxItems = [{ name: this.jednostkaData.strefaNazwa, id: this.jednostkaData.strefaId }]
       });
+      const strefy = await this.strefyApiService.getForSearchbox(); 
+      this.strefaBoxItems = strefy.map(x => ({ name: x.nazwa, id: x.id || 0 })); 
     }
 
     ngOnChanges(changes: SimpleChanges): void {
       if (changes['jednostkaData']) 
       {
-        this.productBoxItems = [{ name: this.jednostkaData.produktNazwa, id: this.jednostkaData.jednostkaId }] 
+        this.produktBoxItems = [{ name: this.jednostkaData.produktNazwa, id: this.jednostkaData.jednostkaId }] 
+        this.strefaBoxItems = [{ name: this.jednostkaData.strefaNazwa, id: this.jednostkaData.strefaId }] 
       }
     }
 
@@ -92,7 +107,7 @@ import { FormSearchboxModule } from '../form-searchbox/form-searchbox.component'
   
     handleSaveClick = async({ validationGroup }: DxButtonTypes.ClickEvent) => {
       if(!validationGroup.validate().isValid) return;
-      var saveResult = await this.apiService.updateJednosta(this.jednostkaData); 
+      var saveResult = await this.jednostkiApiService.updateJednosta(this.jednostkaData); 
       if(saveResult == true)
       {
         this.isEditing = false;
@@ -112,14 +127,26 @@ import { FormSearchboxModule } from '../form-searchbox/form-searchbox.component'
     produktTyping = async(input: string) => { 
       if (input != "")
       {
-        const jednostkiSkrocone = await this.apiService.getSkrocona(100,1); 
-        this.productBoxItems = jednostkiSkrocone.map(x => ({ name: x.produktNazwa, id: x.jednostkaId })); 
+        const produkty = await this.produktyApiService.getForSearchbox(input); 
+        this.produktBoxItems = produkty.map(x => ({ name: x.nazwa, id: x.id ?? 0 })); 
         this.jednostkaData.jednostkaId = null;
       }
     }
 
     produktWybrany(input: string) { 
-      this.jednostkaData.jednostkaId = input; 
+      this.jednostkaData.produktId = input; 
+      this.jednostkaData.produktNazwa = this.produktBoxItems.find(i => i.id == Integer.parseInt(input))?.name;
+      console.log("produkt " + input);
+    }
+
+    strefaTyping = async(input: string) => { 
+
+    }
+    
+    strefaWybrany(input: string) { 
+      this.jednostkaData.strefaId = input;
+      this.jednostkaData.strefaNazwa = this.strefaBoxItems.find(i => i.id == Integer.parseInt(input))?.name;
+      console.log("strefa " + input) 
     }
   }
   
