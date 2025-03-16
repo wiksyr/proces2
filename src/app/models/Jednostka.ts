@@ -5,24 +5,24 @@ export class Jednostka implements IJednostka {
     poprzedniaJednostkaId: number; 
     produktNazwa: string; 
     strefaNazwa: string;
-    numer: number;
+    numer: number|null;
     anulowana: boolean;
-    procesSterId: number;
-    procesDezWstId: number;
+    procesSterId: number|null;
+    procesDezWstId: number|null;
     zakonczona: boolean;
     dataUtworzenia: Date;
     cito: boolean;
     zdarzenieId: string;
     przyjecieId: Date;
     wydanieId: Date;
-    wersjaNaklejki: number;
+    wersjaNaklejki: number|null;
     koszt: string;
-    terminWaznosci: Date;
+    terminWaznosci: Date|null;
     kosztRzeczywisty: string;
-    dataAnulowania: Date;
+    dataAnulowania: Date|null;
     anulowal: string;
-    sztukiProd: number;
-    zrodloCenyJednostki: number;
+    sztukiProd: number|null;
+    zrodloCenyJednostki: number|null;
     tagiZmiany: string;
     zweryfikowanaPrzyPrzyjmowaniu: boolean;
     zweryfikowanaPrzyPakowaniu: boolean;
@@ -30,20 +30,20 @@ export class Jednostka implements IJednostka {
     numerZbiorczy: string;
     dataModyfikacji: Date;
     historiaJednostkiId: Date;
-    wydanieNaStrefieID: number;
+    wydanieNaStrefieID: number|null;
     znaczniki: string;
-    nrObiegu: number; 
-    liczbaUzyc: number;
-    dataZapakowania: Date;
+    nrObiegu: number|null; 
+    liczbaUzyc: number|null;
+    dataZapakowania: Date|null;
     zapakowalId: string;
     wydaniePrzezKlientaId: Date;
     przyjeciePrzezKlientaId: Date;
-    etykietaZbiorczaId: number;
-    procesId: number;
+    etykietaZbiorczaId: number|null;
+    procesId: number|null;
     reklamacjaId: Date; 
-    terminWaznosciDni: number;
+    terminWaznosciDni: number|null;
     saUwagi: boolean;
-    saKomentarze: number;
+    saKomentarze: number|null;
     strefaId: number;
     produktId: number;
 
@@ -52,7 +52,7 @@ export class Jednostka implements IJednostka {
         poprzedniaJednostkaId: number, 
         produktNazwa: string, 
         strefaNazwa: string,
-        numer: string,
+        numer: string|null,
         anulowana: string,
         procesSterId: string,
         procesDezWstId: string,
@@ -98,24 +98,24 @@ export class Jednostka implements IJednostka {
         this.jednostkaId = jednostkaId;  
         this.poprzedniaJednostkaId = poprzedniaJednostkaId;
         this.produktNazwa = produktNazwa; 
-        this.numer = Number.parseInt(numer);
+        this.numer = numer == null ? null : Number.parseInt(numer);
         this.strefaNazwa = strefaNazwa;
         this.anulowana =  anulowana === 'true' || anulowana === '1'; 
-        this.procesSterId = Number.parseInt(procesSterId); 
-        this.procesDezWstId = Number.parseInt(procesDezWstId);
+        this.procesSterId = procesSterId == null ? null :  Number.parseInt(procesSterId); 
+        this.procesDezWstId = procesDezWstId == null ? null :  Number.parseInt(procesDezWstId);
         this.zakonczona = zakonczona === 'true' || zakonczona === '1';
         this.dataUtworzenia = new Date(dataUtworzenia); 
         this.cito = cito === 'true' || cito === '1'; 
         this.zdarzenieId = zdarzenieId;
         this.przyjecieId = new Date(przyjecieId); 
         this.wydanieId = new Date(wydanieId); 
-        this.wersjaNaklejki = Number.parseInt(wersjaNaklejki); 
+        this.wersjaNaklejki = wersjaNaklejki == null ? null :  Number.parseInt(wersjaNaklejki); 
         this.koszt = koszt; 
-        this.terminWaznosci = new Date(terminWaznosci); 
+        this.terminWaznosci = terminWaznosci == null ? null : new Date(terminWaznosci); 
         this.kosztRzeczywisty = kosztRzeczywisty; 
-        this.dataAnulowania = new Date(dataAnulowania); 
+        this.dataAnulowania = dataAnulowania == null ? null :  new Date(dataAnulowania); 
         this.anulowal = anulowal; 
-        this.sztukiProd = Number.parseInt(sztukiProd); 
+        this.sztukiProd = sztukiProd  == null ? null :  Number.parseInt(sztukiProd); 
         this.zrodloCenyJednostki = Number.parseInt(zrodloCenyJednostki); 
         this.tagiZmiany = tagiZmiany; 
         this.zweryfikowanaPrzyPrzyjmowaniu = zweryfikowanaPrzyPrzyjmowaniu === 'true' || zweryfikowanaPrzyPrzyjmowaniu === '1';
@@ -124,20 +124,20 @@ export class Jednostka implements IJednostka {
         this.numerZbiorczy = numerZbiorczy; 
         this.dataModyfikacji = new Date(dataModyfikacji); 
         this.historiaJednostkiId = new Date(historiaJednostkiId); 
-        this.wydanieNaStrefieID = Number.parseInt(wydanieNaStrefieID); 
+        this.wydanieNaStrefieID = wydanieNaStrefieID == null ? null :  Number.parseInt(wydanieNaStrefieID); 
         this.znaczniki = znaczniki; 
-        this.nrObiegu = Number.parseInt(nrObiegu);
-        this.liczbaUzyc = Number.parseInt(liczbaUzyc); 
-        this.dataZapakowania = new Date(dataZapakowania); 
+        this.nrObiegu = nrObiegu == null ? null :  Number.parseInt(nrObiegu);
+        this.liczbaUzyc = liczbaUzyc == null ? null :  Number.parseInt(liczbaUzyc); 
+        this.dataZapakowania = dataZapakowania == null ? null : new Date(dataZapakowania); 
         this.zapakowalId = zapakowalId; 
         this.wydaniePrzezKlientaId = new Date(wydaniePrzezKlientaId); 
         this.przyjeciePrzezKlientaId = new Date(przyjeciePrzezKlientaId);
-        this.etykietaZbiorczaId = Number.parseInt(etykietaZbiorczaId); 
-        this.procesId = Number.parseInt(procesId); 
+        this.etykietaZbiorczaId = etykietaZbiorczaId == null ? null : Number.parseInt(etykietaZbiorczaId); 
+        this.procesId = procesId == null ? null :  Number.parseInt(procesId); 
         this.reklamacjaId = new Date(reklamacjaId);  
-        this.terminWaznosciDni = Number.parseInt(terminWaznosciDni); 
+        this.terminWaznosciDni = terminWaznosciDni == null ? null :  Number.parseInt(terminWaznosciDni); 
         this.saUwagi = saUwagi === 'true' || saUwagi === '1'; 
-        this.saKomentarze = Number.parseInt(saKomentarze);
+        this.saKomentarze = saKomentarze == null ? null :  Number.parseInt(saKomentarze);
         this.strefaId = Number.parseInt(strefaId); 
         this.produktId = Number.parseInt(produktId); 
     }

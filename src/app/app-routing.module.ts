@@ -16,7 +16,7 @@ import { JednostkiBiezaceComponent } from './pages/jednostki-biezace/jednostki-b
 import { JednostkiDataResolver } from './services/jednostki-data-resolver';
 import { JednostkiPojedynczaComponent } from './pages/jednostki-pojedyncza/jednostki-pojedyncza.component';
 import { JednostkiBiezaceDataResolver } from './services/jednostki-biezace-data-resolver';
-import { ContactFormModule } from "./components/jednostka-form/jednostka-form.component";
+import { JednostkaFormModule } from "./components/jednostka-form/jednostka-form.component";
 import { FormItemDateModule } from './components/form-datebox/form-datebox-component';
 import { JednostkiTabletComponent } from './pages/jednostki-tablet/jednostki-tablet.component';
 import { JednostkiResponsiveComponent } from './pages/jednostki-responsive/jednostki-responsive.component';
@@ -144,7 +144,6 @@ const routes: Routes = [
     FormTextboxModule,
     FormPhotoModule,
     JednostkiPanelModule, 
-    ContactFormModule, 
     FormItemDateModule, 
     CardJednostkaSkroconaModule, 
     FormGalleryModule, 
@@ -152,7 +151,8 @@ const routes: Routes = [
     FormsModule, 
     DxSelectBoxModule, 
     SharedModule, 
-    FormSearchboxModule
+    FormSearchboxModule, 
+    JednostkaFormModule
     ], 
   providers: [AuthGuardService],
   exports: [RouterModule],

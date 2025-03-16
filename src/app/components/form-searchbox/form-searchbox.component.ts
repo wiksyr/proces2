@@ -39,14 +39,11 @@ export class FormSearchboxComponent implements OnChanges {
   }
 
   valueChanged(e:any) {
-    console.log(e); 
     this.valueChange.emit(e.value);
   }
 
   onSearch(e:any) { 
-    console.log(e.value); 
-    console.log(e);
-    this.keyDowned.emit(e.value); 
+    this.keyDowned.emit(e.event.target.value); 
   }
 
 }

@@ -84,15 +84,16 @@ import Integer from '@zxing/library/esm/core/util/Integer';
         this.produktBoxItems = [{ name: this.jednostkaData.produktNazwa, id: this.jednostkaData.produktId }] 
         this.strefaBoxItems = [{ name: this.jednostkaData.strefaNazwa, id: this.jednostkaData.strefaId }]
       });
-      const strefy = await this.strefyApiService.getForSearchbox(); 
-      this.strefaBoxItems = strefy.map(x => ({ name: x.nazwa, id: x.id || 0 })); 
     }
 
-    ngOnChanges(changes: SimpleChanges): void {
+    async ngOnChanges(changes: SimpleChanges) {
       if (changes['jednostkaData']) 
       {
-        this.produktBoxItems = [{ name: this.jednostkaData.produktNazwa, id: this.jednostkaData.jednostkaId }] 
-        this.strefaBoxItems = [{ name: this.jednostkaData.strefaNazwa, id: this.jednostkaData.strefaId }] 
+        const strefy = await this.strefyApiService.getForSearchbox(); 
+        this.strefaBoxItems = strefy.map(x => ({ name: x.nazwa, id: x.id || 0 })); 
+        const produkty = await this.produktyApiService.getForSearchbox(this.jednostkaData.produktNazwa); 
+        console.log(produkty); 
+        this.produktBoxItems = produkty.map(x => ({ name: x.nazwa, id: x.id ?? 0 })); 
       }
     }
 
@@ -107,6 +108,8 @@ import Integer from '@zxing/library/esm/core/util/Integer';
   
     handleSaveClick = async({ validationGroup }: DxButtonTypes.ClickEvent) => {
       if(!validationGroup.validate().isValid) return;
+      console.log(this.jednostkaData.produktId); 
+      console.log
       var saveResult = await this.jednostkiApiService.updateJednosta(this.jednostkaData); 
       if(saveResult == true)
       {
@@ -129,14 +132,13 @@ import Integer from '@zxing/library/esm/core/util/Integer';
       {
         const produkty = await this.produktyApiService.getForSearchbox(input); 
         this.produktBoxItems = produkty.map(x => ({ name: x.nazwa, id: x.id ?? 0 })); 
-        this.jednostkaData.jednostkaId = null;
+        this.jednostkaData.produktId = null;
       }
     }
 
     produktWybrany(input: string) { 
       this.jednostkaData.produktId = input; 
       this.jednostkaData.produktNazwa = this.produktBoxItems.find(i => i.id == Integer.parseInt(input))?.name;
-      console.log("produkt " + input);
     }
 
     strefaTyping = async(input: string) => { 
@@ -146,7 +148,6 @@ import Integer from '@zxing/library/esm/core/util/Integer';
     strefaWybrany(input: string) { 
       this.jednostkaData.strefaId = input;
       this.jednostkaData.strefaNazwa = this.strefaBoxItems.find(i => i.id == Integer.parseInt(input))?.name;
-      console.log("strefa " + input) 
     }
   }
   
@@ -174,4 +175,4 @@ import Integer from '@zxing/library/esm/core/util/Integer';
     exports: [JednostkaFormComponent],
     declarations: [JednostkaFormComponent],
   })
-  export class ContactFormModule { }
+  export class JednostkaFormModule { }
