@@ -41,7 +41,7 @@
                 *dxTemplate
                 label="Jednostka Id:"
                 [(value)]="jednostkaData.jednostkaId"
-                [isEditing]="isEditing"
+                [isEditing]="false"
               ></form-textbox>
             </dxi-item>
   
@@ -50,7 +50,7 @@
                 *dxTemplate
                 label="Poprzednia Jednostka Id:"
                 [(value)]="jednostkaData.poprzedniaJednostkaId"
-                [isEditing]="isEditing"
+                [isEditing]="false"
                 [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
@@ -99,8 +99,9 @@
               <div *dxTemplate>
                 <form-item-date
                   label="Data utworzenia"
-                  [isEditing]="isEditing"
+                  [isEditing]="false"
                   [(value)]="jednostkaData.dataUtworzenia"
+                  [validators]="disabledValidationValidationRule"
                 ></form-item-date>
               </div>
             </dxi-item>
@@ -109,8 +110,9 @@
               <div *dxTemplate>
                 <form-item-date
                   label="Data modyfikacji"
-                  [isEditing]="isEditing"
+                  [isEditing]="false"
                   [(value)]="jednostkaData.dataModyfikacji"
+                  [validators]="disabledValidationValidationRule"
                 ></form-item-date>
               </div>
             </dxi-item>
@@ -146,23 +148,24 @@
             </dxi-item>
     
             <dxi-item>
-              <form-textbox
+              <form-checkbox
                 *dxTemplate
-                label="Zakończona:"
+                label="Zakończona"
                 [(value)]="jednostkaData.zakonczona"
                 [isEditing]="isEditing"
                 [validators]="disabledValidationValidationRule"
-              ></form-textbox>
+                >
+              </form-checkbox>
             </dxi-item>
     
             <dxi-item>
-              <form-textbox
+              <form-checkbox
                 *dxTemplate
-                label="Cito:"
+                label="Cito"
                 [(value)]="jednostkaData.cito"
                 [isEditing]="isEditing"
                 [validators]="disabledValidationValidationRule"
-              ></form-textbox>
+              ></form-checkbox>
             </dxi-item>
     
             <dxi-item>
@@ -170,7 +173,7 @@
                 *dxTemplate
                 label="Zdarzenie:"
                 [(value)]="jednostkaData.zdarzenieId"
-                [isEditing]="isEditing"
+                [isEditing]="false"
                 [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
@@ -179,20 +182,21 @@
               <div *dxTemplate>
                 <form-item-date
                   label="Przyjęcie:"
-                  [isEditing]="isEditing"
+                  [isEditing]="false"
                   [(value)]="jednostkaData.przyjecieId"
+                  [validators]="disabledValidationValidationRule"
                 ></form-item-date>
               </div>
             </dxi-item>
     
             <dxi-item>
-              <form-textbox
+              <form-item-date
                 *dxTemplate
                 label="Wydanie Id:"
                 [(value)]="jednostkaData.wydanieId"
-                [isEditing]="isEditing"
+                [isEditing]="false"
                 [validators]="disabledValidationValidationRule"
-              ></form-textbox>
+              ></form-item-date>
             </dxi-item>
     
             <dxi-item>
@@ -236,13 +240,13 @@
             </dxi-item>
     
             <dxi-item>
-              <form-textbox
+              <form-item-date
                 *dxTemplate
                 label="Termin ważności:"
                 [(value)]="jednostkaData.terminWaznosci"
                 [isEditing]="isEditing"
                 [validators]="disabledValidationValidationRule"
-              ></form-textbox>
+              ></form-item-date>
             </dxi-item>
     
             <dxi-item>
@@ -250,36 +254,6 @@
                 *dxTemplate
                 label="Termin ważności (dni):"
                 [(value)]="jednostkaData.terminWaznosciDni"
-                [isEditing]="isEditing"
-                [validators]="disabledValidationValidationRule"
-              ></form-textbox>
-            </dxi-item>
-
-            <dxi-item>
-              <form-textbox
-                *dxTemplate
-                label="Anulowana:"
-                [(value)]="jednostkaData.anulowana"
-                [isEditing]="isEditing"
-                [validators]="disabledValidationValidationRule"
-              ></form-textbox>
-            </dxi-item>
-    
-            <dxi-item>
-              <div *dxTemplate>
-                <form-item-date
-                  label="Data anulowania:"
-                  [isEditing]="isEditing"
-                  [(value)]="jednostkaData.dataAnulowania"
-                ></form-item-date>
-              </div>
-            </dxi-item>
-    
-            <dxi-item>
-              <form-textbox
-                *dxTemplate
-                label="Anulował:"
-                [(value)]="jednostkaData.anulowal"
                 [isEditing]="isEditing"
                 [validators]="disabledValidationValidationRule"
               ></form-textbox>
@@ -296,41 +270,42 @@
             </dxi-item>
     
             <dxi-item>
-              <form-textbox
+              <form-checkbox
                 *dxTemplate
-                label="Zweryfikowana przy przyjmowaniu:"
+                label="Zweryfikowana przy przyjmowaniu"
                 [(value)]="jednostkaData.zweryfikowanaPrzyPrzyjmowaniu"
                 [isEditing]="isEditing"
                 [validators]="disabledValidationValidationRule"
-              ></form-textbox>
+              ></form-checkbox>
             </dxi-item>
     
             <dxi-item>
-              <form-textbox
+              <form-checkbox
                 *dxTemplate
-                label="Zweryfikowana przy pakowaniu:"
+                label="Zweryfikowana przy pakowaniu"
                 [(value)]="jednostkaData.zweryfikowanaPrzyPakowaniu"
                 [isEditing]="isEditing"
                 [validators]="disabledValidationValidationRule"
-              ></form-textbox>
+              ></form-checkbox>
             </dxi-item>
     
             <dxi-item>
-              <form-textbox
+              <form-item-date
                 *dxTemplate
                 label="Zrealizowane jednostki Id:"
                 [(value)]="jednostkaData.zrealizowaneJednostkiId"
-                [isEditing]="isEditing"
+                [isEditing]="false"
                 [validators]="disabledValidationValidationRule"
-              ></form-textbox>
+              ></form-item-date>
             </dxi-item>
     
             <dxi-item>
               <div *dxTemplate>
                 <form-item-date
                   label="Historia jednostki:"
-                  [isEditing]="isEditing"
+                  [isEditing]="false"
                   [(value)]="jednostkaData.historiaJednostkiId"
+                  [validators]="disabledValidationValidationRule"
                 ></form-item-date>
               </div>
             </dxi-item>
@@ -340,7 +315,7 @@
                 *dxTemplate
                 label="Wydanie na strefie Id:"
                 [(value)]="jednostkaData.wydanieNaStrefieID"
-                [isEditing]="isEditing"
+                [isEditing]="false"
                 [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
@@ -376,43 +351,23 @@
             </dxi-item>
     
             <dxi-item>
-              <form-textbox
-                *dxTemplate
-                label="Data zapakowania:"
-                [(value)]="jednostkaData.dataZapakowania"
-                [isEditing]="isEditing"
-                [validators]="disabledValidationValidationRule"
-              ></form-textbox>
-            </dxi-item>
-    
-            <dxi-item>
-              <form-textbox
-                *dxTemplate
-                label="Zapakował:"
-                [(value)]="jednostkaData.zapakowalId"
-                [isEditing]="isEditing"
-                [validators]="disabledValidationValidationRule"
-              ></form-textbox>
-            </dxi-item>
-    
-            <dxi-item>
-              <form-textbox
+              <form-item-date
                 *dxTemplate
                 label="Wydanie przez klienta Id:"
                 [(value)]="jednostkaData.wydaniePrzezKlientaId"
-                [isEditing]="isEditing"
+                [isEditing]="false"
                 [validators]="disabledValidationValidationRule"
-              ></form-textbox>
+              ></form-item-date>
             </dxi-item>
     
             <dxi-item>
-              <form-textbox
+              <form-item-date
                 *dxTemplate
                 label="Przyjęcie przez klienta Id:"
                 [(value)]="jednostkaData.przyjeciePrzezKlientaId"
-                [isEditing]="isEditing"
+                [isEditing]="false"
                 [validators]="disabledValidationValidationRule"
-              ></form-textbox>
+              ></form-item-date>
             </dxi-item>
     
             <dxi-item>
@@ -436,23 +391,23 @@
             </dxi-item>
     
             <dxi-item>
-              <form-textbox
+              <form-item-date
                 *dxTemplate
                 label="Reklamacja:"
                 [(value)]="jednostkaData.reklamacjaId"
-                [isEditing]="isEditing"
+                [isEditing]="false"
                 [validators]="disabledValidationValidationRule"
-              ></form-textbox>
+              ></form-item-date>
             </dxi-item>
     
             <dxi-item>
-              <form-textbox
+              <form-checkbox
                 *dxTemplate
                 label="Są uwagi"
                 [(value)]="jednostkaData.saUwagi"
-                [isEditing]="isEditing"
+                [isEditing]="false"
                 [validators]="disabledValidationValidationRule"
-              ></form-textbox>
+              ></form-checkbox>
             </dxi-item>
     
             <dxi-item>
@@ -460,6 +415,32 @@
                 *dxTemplate
                 label="Są komentarze:"
                 [(value)]="jednostkaData.saKomentarze"
+                [isEditing]="false"
+                [validators]="disabledValidationValidationRule"
+              ></form-textbox>
+            </dxi-item>
+    
+          </dxi-item>
+          
+          <dxi-item itemType="group" [colCount]="3" [caption]="'Pakowanie'">
+            
+            <dxo-col-count-by-screen [xs]="3"></dxo-col-count-by-screen>
+    
+            <dxi-item>
+              <form-item-date
+                *dxTemplate
+                label="Data zapakowania:"
+                [(value)]="jednostkaData.dataZapakowania"
+                [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
+              ></form-item-date>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Zapakował:"
+                [(value)]="jednostkaData.zapakowalId"
                 [isEditing]="isEditing"
                 [validators]="disabledValidationValidationRule"
               ></form-textbox>
@@ -467,6 +448,43 @@
     
           </dxi-item>
           
+          <dxi-item itemType="group" [colCount]="3" [caption]="'Anulowanie'">
+            
+            <dxo-col-count-by-screen [xs]="3"></dxo-col-count-by-screen>
+    
+            <dxi-item>
+              <form-checkbox
+                *dxTemplate
+                label="Anulowana"
+                [(value)]="jednostkaData.anulowana"
+                [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
+              ></form-checkbox>
+            </dxi-item>
+    
+            <dxi-item>
+              <div *dxTemplate>
+                <form-item-date
+                  label="Data anulowania:"
+                  [isEditing]="isEditing"
+                  [(value)]="jednostkaData.dataAnulowania"
+                  [validators]="disabledValidationValidationRule"
+                ></form-item-date>
+              </div>
+            </dxi-item>
+    
+            <dxi-item>
+              <form-textbox
+                *dxTemplate
+                label="Anulował:"
+                [(value)]="jednostkaData.anulowal"
+                [isEditing]="isEditing"
+                [validators]="disabledValidationValidationRule"
+              ></form-textbox>
+            </dxi-item>
+
+          </dxi-item>
+
       </dx-form>
     </dx-validation-group>
     <dx-load-panel

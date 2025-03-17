@@ -36,6 +36,7 @@ import { ProduktSearch } from '../../models/ProduktSearch';
 import { StrefaSearch } from '../../models/StrefaSearch';
 import { SearchBoxItem } from '../../models/SearchBoxItem';
 import Integer from '@zxing/library/esm/core/util/Integer';
+import { FormCheckboxModule } from '../form-checkbox/form-checkbox.component';
 //   import { ToolbarFormModule } from 'src/app/components/utils/toolbar-form/toolbar-form.component';
   
   @Component({
@@ -130,9 +131,9 @@ import Integer from '@zxing/library/esm/core/util/Integer';
     produktTyping = async(input: string) => { 
       if (input != "")
       {
+        this.jednostkaData.produktId = null;
         const produkty = await this.produktyApiService.getForSearchbox(input); 
         this.produktBoxItems = produkty.map(x => ({ name: x.nazwa, id: x.id ?? 0 })); 
-        this.jednostkaData.produktId = null;
       }
     }
 
@@ -169,7 +170,8 @@ import Integer from '@zxing/library/esm/core/util/Integer';
     FormGalleryModule, 
     SharedModule, 
     ToolbarFormModule, 
-    FormSearchboxModule
+    FormSearchboxModule, 
+    FormCheckboxModule
 ],
     providers: [],
     exports: [JednostkaFormComponent],
