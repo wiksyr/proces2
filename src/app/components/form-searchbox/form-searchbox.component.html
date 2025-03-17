@@ -8,6 +8,7 @@
     [showClearButton]="true"
     [readOnly]="!isEditing"
     [searchEnabled]="true"
+    [elementAttr]="{ class: 'form-editor' }"
     (onValueChanged)="valueChanged($event)"
     (onInput)="onSearch($event)"
 >

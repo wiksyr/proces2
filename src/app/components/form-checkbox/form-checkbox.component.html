@@ -1,0 +1,8 @@
+<dx-check-box
+[(value)]="value"
+[text]="label"
+[readOnly]="!isEditing"
+[elementAttr]="{ class: 'form-editor' }"
+(valueChange)="valueChanged($event)">
+<dx-validator [validationRules]="validators"></dx-validator>
+</dx-check-box>
