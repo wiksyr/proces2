@@ -14,7 +14,7 @@ const defaultUser = {
 
 @Injectable()
 export class AuthService {
-  private _user: IUser | null = null;// defaultUser;
+  private _user: IUser | null = defaultUser;
   get loggedIn(): boolean {
     return !!this._user;
   }

@@ -109,8 +109,6 @@ import { FormCheckboxModule } from '../form-checkbox/form-checkbox.component';
   
     handleSaveClick = async({ validationGroup }: DxButtonTypes.ClickEvent) => {
       if(!validationGroup.validate().isValid) return;
-      console.log(this.jednostkaData.produktId); 
-      console.log
       var saveResult = await this.jednostkiApiService.updateJednosta(this.jednostkaData); 
       if(saveResult == true)
       {

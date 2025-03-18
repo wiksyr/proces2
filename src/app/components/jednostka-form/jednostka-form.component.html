@@ -431,7 +431,7 @@
                 *dxTemplate
                 label="Data zapakowania:"
                 [(value)]="jednostkaData.dataZapakowania"
-                [isEditing]="isEditing"
+                [isEditing]="false"
                 [validators]="disabledValidationValidationRule"
               ></form-item-date>
             </dxi-item>
@@ -441,7 +441,7 @@
                 *dxTemplate
                 label="Zapakował:"
                 [(value)]="jednostkaData.zapakowalId"
-                [isEditing]="isEditing"
+                [isEditing]="false"
                 [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
@@ -457,7 +457,7 @@
                 *dxTemplate
                 label="Anulowana"
                 [(value)]="jednostkaData.anulowana"
-                [isEditing]="isEditing"
+                [isEditing]="false"
                 [validators]="disabledValidationValidationRule"
               ></form-checkbox>
             </dxi-item>
@@ -466,7 +466,7 @@
               <div *dxTemplate>
                 <form-item-date
                   label="Data anulowania:"
-                  [isEditing]="isEditing"
+                  [isEditing]="false"
                   [(value)]="jednostkaData.dataAnulowania"
                   [validators]="disabledValidationValidationRule"
                 ></form-item-date>
@@ -478,7 +478,7 @@
                 *dxTemplate
                 label="Anulował:"
                 [(value)]="jednostkaData.anulowal"
-                [isEditing]="isEditing"
+                [isEditing]="false"
                 [validators]="disabledValidationValidationRule"
               ></form-textbox>
             </dxi-item>
