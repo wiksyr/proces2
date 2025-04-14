@@ -22,7 +22,6 @@ import { JednostkiTabletComponent } from './pages/jednostki-tablet/jednostki-tab
 import { JednostkiResponsiveComponent } from './pages/jednostki-responsive/jednostki-responsive.component';
 import { CardJednostkaSkroconaModule } from './components/card-jednostka-skrocona/card-jednostka-skrocona.component';
 import { FormGalleryModule } from './components/form-gallery/form-gallery.component';
-import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { FormsModule, NgModel } from '@angular/forms';
 import { CzytnikKodowModalComponent } from './pages/czytnik-kodow-modal/czytnik-kodow-modal.component';
 import { JednostkaCameraCaptureComponent } from './pages/jednostka-camera-capture/jednostka-camera-capture.component';
@@ -31,8 +30,41 @@ import { SharedModule } from './app-shared.module';
 import { ScanditSkanerComponent } from './pages/scandit-skaner/scandit-skaner.component';
 import { FormSearchboxModule } from './components/form-searchbox/form-searchbox.component';
 import { FormCheckboxModule } from './components/form-checkbox/form-checkbox.component';
+import { JsqrScannerComponent } from './pages/jsqr-scanner/jsqr-scanner.component';
+import { QuaggaScannerComponent } from './pages/quagga-scanner/quagga-scanner.component';
+import { IntascanScannerComponent } from './pages/intascan-scanner/intascan-scanner.component';
+import { NgxSkanerComponent } from './pages/ngx-skaner/ngx-skaner.component';
+import { LOAD_WASM, NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
+import { SafePipe } from './pages/ngx-skaner/safe.pipe';
+import { ZxingSkanerComponent } from './pages/zxing-skaner/zxing-skaner.component';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 const routes: Routes = [
+  {
+    path: 'pages/zxing-skaner',
+    component: ZxingSkanerComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
+    path: 'pages/ngx-skaner',
+    component: NgxSkanerComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
+    path: 'pages/intascan-scanner',
+    component: IntascanScannerComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
+    path: 'pages/quagga-scanner',
+    component: QuaggaScannerComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
+    path: 'pages/jsqr-scanner',
+    component: JsqrScannerComponent,
+    canActivate: [ AuthGuardService ]
+  },
   {
     path: 'pages/scandit-skaner',
     component: ScanditSkanerComponent,
@@ -41,6 +73,11 @@ const routes: Routes = [
   {
     path: 'pages/camera-capture-modal',
     component: CameraCaptureModalComponent,
+    canActivate: [ AuthGuardService ]
+  },
+  {
+    path: 'pages/ngx-skaner',
+    component: NgxSkanerComponent,
     canActivate: [ AuthGuardService ]
   },
   {
@@ -148,13 +185,14 @@ const routes: Routes = [
     FormItemDateModule, 
     CardJednostkaSkroconaModule, 
     FormGalleryModule, 
-    ZXingScannerModule, 
     FormsModule, 
     DxSelectBoxModule, 
     SharedModule, 
     FormSearchboxModule, 
     FormCheckboxModule, 
-    JednostkaFormModule
+    JednostkaFormModule, 
+    NgxScannerQrcodeModule, 
+    ZXingScannerModule
     ], 
   providers: [AuthGuardService],
   exports: [RouterModule],
@@ -169,7 +207,12 @@ const routes: Routes = [
     JednostkiTabletComponent,
     JednostkiResponsiveComponent,
     CzytnikKodowModalComponent,
-    ScanditSkanerComponent
+    ScanditSkanerComponent,
+    JsqrScannerComponent,
+    QuaggaScannerComponent,
+    IntascanScannerComponent,
+    NgxSkanerComponent, 
+    SafePipe, ZxingSkanerComponent
   ]
 })
 export class AppRoutingModule { }

@@ -54,7 +54,8 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+               "src/assets"
             ],
             "styles": [
               "node_modules/devextreme/dist/css/dx.common.css",
@@ -66,7 +67,11 @@
               "src/variables.scss",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/customLibraries/quagga.js", 
+              "src/assets/customLibraries/quagga.min.js",
+              "src/assets/customLibraries/myscript.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -82,7 +87,8 @@
                   "maximumError": "4kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "serviceWorker": "ngsw-config.json"
             },
             "development": {
               "optimization": false,

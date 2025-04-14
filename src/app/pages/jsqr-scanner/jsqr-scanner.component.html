@@ -1,0 +1,6 @@
+<div>
+    <video id="scanner" #videoElement width="100%" height="auto" style="border: 1px solid black;"></video>
+    <div *ngIf="!videoElement?.srcObject">
+      <p>Unable to access the camera. Please check permissions.</p>
+    </div>
+  </div>

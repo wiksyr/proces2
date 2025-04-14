@@ -19,7 +19,7 @@
   <button (click)="stopScanner()">Stop Scanning</button>
   <br/><br/> -->
   
-  <!-- <div *ngIf="videoInputDevices.length > 0">
+  <div *ngIf="videoInputDevices.length > 0">
     <dx-select-box
     [(value)]="selectedDeviceId"
     [items]="videoInputDevices"
@@ -28,10 +28,10 @@
     placeholder="Wybierz skanner:"
     [title]="'Wybierz skanner:'"
     (onItemClick)="startScanner()">
-  </dx-select-box> -->
-  <!-- </div> -->
-  <!-- <dx-button icon="save" [text]="'Skanuj'" (onClick)="startScanner()"></dx-button> -->
-  <!-- <dx-button icon="remove" [text]="'Wstrzymaj'" (onClick)="stopScanner()"></dx-button> -->
+  </dx-select-box>
+  </div>
+  <dx-button icon="save" [text]="'Skanuj'" (onClick)="startScanner()"></dx-button>
+  <dx-button icon="remove" [text]="'Wstrzymaj'" (onClick)="stopScanner()"></dx-button>
 </div>
 
 <div *ngIf="!hasDevices">

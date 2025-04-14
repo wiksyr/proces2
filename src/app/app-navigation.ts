@@ -33,7 +33,7 @@ export const navigation = [
     ]
   },
   {
-    text: 'Czytnik Kodow',
+    text: 'Skaner',
     path: '/pages/czytnik-kodow',
     icon: 'filter'
   },
@@ -45,6 +45,16 @@ export const navigation = [
   {
     text: 'Scandit Skaner',
     path: '/pages/scandit-skaner',
+    icon: 'folder'
+  }, 
+  {
+    text: 'Dynamsoft Scanner',
+    path: '/pages/intascan-scanner',
+    icon: 'folder'
+  }, 
+  {
+    text: 'Ngx Scanner',
+    path: '/pages/ngx-skaner',
     icon: 'folder'
   }
 ];

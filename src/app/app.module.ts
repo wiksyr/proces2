@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -14,6 +14,7 @@ import { CommonModule, NgIf } from '@angular/common';
 import { FormTextboxModule } from './components/form-textbox/form-textbox.component';
 import { FormPhotoModule } from './components/form-photo/form-photo.component';
 import { HttpTimeoutInterceptor } from './services/http.interceptor';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,12 @@ import { HttpTimeoutInterceptor } from './services/http.interceptor';
     DxTextBoxModule, 
     DxDateBoxModule, 
     DxTextAreaModule, 
-    DxButtonModule
+    DxButtonModule, ServiceWorkerModule.register('ngsw-worker.js', {
+  enabled: !isDevMode(),
+  // Register the ServiceWorker as soon as the application is stable
+  // or after 30 seconds (whichever comes first).
+  registrationStrategy: 'registerWhenStable:30000'
+})
   ],
   providers: [
     AuthService,
