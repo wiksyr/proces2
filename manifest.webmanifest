@@ -1,6 +1,6 @@
 {
-    "name": "My Angular PWA",
-    "short_name": "AngularPWA",
+    "name": "Proces PWA",
+    "short_name": "ProcesPWA",
     "theme_color": "#1976d2",
     "background_color": "#fafafa",
     "display": "standalone",
@@ -8,10 +8,11 @@
     "start_url": "/",
     "icons": [
       {
-        "src": "assets/icons/icon-192x192.png",
+        "src": "assets/images/play.svg",
         "sizes": "192x192",
-        "type": "image/png"
+        "type": "image/svg"
       }
-    ]
+    ], 
+    "form_factor": ["mobile", "desktop", "wide"]
   }
   

@@ -38,8 +38,14 @@ import { LOAD_WASM, NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
 import { SafePipe } from './pages/ngx-skaner/safe.pipe';
 import { ZxingSkanerComponent } from './pages/zxing-skaner/zxing-skaner.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { PwaComponent } from './pages/pwa/pwa.component';
 
 const routes: Routes = [
+  {
+    path: 'pages/pwa',
+    component: PwaComponent,
+    canActivate: [ AuthGuardService ]
+  },
   {
     path: 'pages/zxing-skaner',
     component: ZxingSkanerComponent,
@@ -212,7 +218,7 @@ const routes: Routes = [
     QuaggaScannerComponent,
     IntascanScannerComponent,
     NgxSkanerComponent, 
-    SafePipe, ZxingSkanerComponent
+    SafePipe, ZxingSkanerComponent, PwaComponent
   ]
 })
 export class AppRoutingModule { }
