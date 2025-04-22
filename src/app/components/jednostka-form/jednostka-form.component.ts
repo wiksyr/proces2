@@ -55,7 +55,7 @@ import { FormCheckboxModule } from '../form-checkbox/form-checkbox.component';
 
     isModalOpen: boolean = false; 
 
-    error: string = ""; 
+    error: string|null = ""; 
 
     links = [
       'https://th.bing.com/th/id/R.ea17070f3a1a5b00a5bd7bd392fe7007?rik=jOK6fYqAeiqJTw&pid=ImgRaw&r=0', 
@@ -114,6 +114,7 @@ import { FormCheckboxModule } from '../form-checkbox/form-checkbox.component';
       {
         this.isEditing = false;
         this.savedData = null;
+        this.error = null; 
       }
       else { 
         this.error = "Nie udało się zapisać danych"; 

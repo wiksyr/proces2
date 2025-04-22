@@ -19,7 +19,7 @@ export class ProductTypeApiService {
       const headers = new HttpHeaders({
         'Accept': 'application/x-msgpack'
       });
-      const response = await fetch(`${config.apiUrl}/ProductType`, {
+      const response = await fetch(`${config.apiUrl}/api/ProductType`, {
         headers: { 'Accept': 'application/x-msgpack' }
       }); 
       const arrayBuffer = await response.arrayBuffer();
